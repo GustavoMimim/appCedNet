@@ -1,0 +1,29 @@
+{
+    "dev": {
+        "useEslint": false
+     },
+    "env": {
+        "browser": true,
+        "node": true,
+        "es6": true
+    },
+    "extends": [
+        "standard",
+        "eslint:recommended",
+        "plugin:react/recommended"
+    ],
+    "globals": {
+        "Atomics": "readonly",
+        "SharedArrayBuffer": "readonly",
+        "use": true
+    },
+    "parserOptions": {
+        "ecmaFeatures": {
+            "jsx": true
+        },
+        "ecmaVersion": 2017
+    },
+    "plugins": [
+        "react", "jsx-a11y", "disable"
+    ]
+}

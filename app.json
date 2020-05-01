@@ -23,6 +23,10 @@
     ],
     "ios": {
       "supportsTablet": true
+    },
+    "android": {
+      "package": "com.cednet.cedapp",
+      "versionCode": 1
     }
   }
 }
