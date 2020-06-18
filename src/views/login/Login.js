@@ -1,7 +1,5 @@
 import React, { useState } from 'react'
-import {
-  StyleSheet, View, Alert, StatusBar
-} from 'react-native'
+import { StyleSheet, View, Alert, StatusBar } from 'react-native'
 import { Button, Input } from 'react-native-elements'
 
 export default Authenticate = (props) => {
@@ -40,7 +38,7 @@ export default Authenticate = (props) => {
             if (responseJson === 'Logado com sucesso!') {
               // Alert.alert('Atenção!', JSON.stringify(responseJson));
               // Then open Profile activity and send user email to profile activity.
-              props.navigation.navigate('Main')
+              props.navigation.navigate('Home')
             } else {
               Alert.alert('Falha ao entrar!', JSON.stringify(responseJson))
             }

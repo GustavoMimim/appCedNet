@@ -6,7 +6,8 @@ export default initialScreen = (props) => (
 
   <View style={styles.container}>
 
-  <StatusBar hidden={false} color="white" backgroundColor="transparent" translucent />
+    {/* <StatusBar hidden={false} color="white" backgroundColor="transparent" translucent /> */}
+    <StatusBar barStyle="light-content" />
 
     <ImageBackground source={require('../../assets/initialBackground6.jpg')} style={styles.image} resizeMode="cover">
 

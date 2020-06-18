@@ -1,78 +1,93 @@
-import React from 'react'
-import { TouchableOpacity } from 'react-native'
-import { createAppContainer } from 'react-navigation'
-import { createStackNavigator } from 'react-navigation-stack'
-import Icon from 'react-native-vector-icons/FontAwesome'
+import React from 'react';
+import { TouchableOpacity } from 'react-native';
+import { NavigationContainer } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 
+import Icon from 'react-native-vector-icons/FontAwesome';
+
+//Screens
 import loginView from './views/login/Login.js'
 import dashboardView from './views/dashboard/Dashboard.js'
 import startView from './views/start/Initial.js'
+import homeView from './views/home/Home.js'
+import mapView from './views/map/Map.js'
+import settingsView from './views/settings/Settings.js'
+import orderView from './views/order/Order.js'
+import aboutView from './views/about/About.js'
+import { isSignedIn } from './services/auth.js'
 
-import { NavigationContainer } from '@react-navigation/native';
-import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+const HomeStack = createStackNavigator();
 
-const Routes = createAppContainer(
-  createStackNavigator({
-/*     Start: {
-      screen: startView,
-      navigationOptions: {
-        headerShown: false,
-        headerStyle: {
-          backgroundColor: 'red'
-        }
-      }
-    },
-    Login: {
-      screen: loginView,
-      navigationOptions: {
-        headerShown: true,
-        headerStyle: {
-          elevation: 0,
-          shadowOpacity: 0,
-          backgroundColor: '#004B8D'
-        },
-        headerTitleStyle: {
-          color: 'white'
-        },
-        headerTintColor: 'white'
-      }
-    }, */
-    Dashboard: {
-      screen: dashboardView,
-      navigationOptions: {
-        headerShown: false
-      }
-      /*      navigationOptions: {
-              title: 'GRUPO CEDNET',
-              headerShown: false,
-              headerTitleStyle: {
-                color: '#004B8D'
+function HomeStackScreen ({ navigation }) {
+  return (
+    <HomeStack.Navigator>
+      <HomeStack.Screen
+        name="GRUPO CEDNET"
+        component={homeView}
+        options={{
+          title: 'GRUPO CEDNET',
+          headerShown: true,
+          headerTitleStyle: {
+            color: '#004B8D'
           },
-              headerLeft: () =>
-                <TouchableOpacity
-                  style={[{ paddingHorizontal: 30 }]}
-                  onPress={() => alert('Desculpe, ainda não temos isso!')}
-                >
-                  <Icon
-                    name='bars'
-                    size={18}
-                    color='#004B8D'
-                  />
-                </TouchableOpacity>,
-              headerRight: () =>
-                <TouchableOpacity
-                  style={[{ paddingHorizontal: 30 }]}
-                  onPress={() => alert('Desculpe, ainda não temos isso!')}
-                >
-                  <Icon
-                    name='user'
-                    size={18}
-                    color='#004B8D'
-                  />
-                </TouchableOpacity>
-            } */
-    }
-  })
-)
+          headerRight: () =>
+            <TouchableOpacity
+              style={[{ paddingHorizontal: 30 }]}
+              onPress={() => navigation.navigate('Dashboard')}
+            >
+              <Icon
+                name='pie-chart'
+                size={28}
+                color='#004B8D'
+              />
+            </TouchableOpacity>
 
-export default Routes
+        }}
+      />
+      <HomeStack.Screen name="Dashboard" component={dashboardView} />
+    </HomeStack.Navigator>
+  );
+}
+
+const Tab = createBottomTabNavigator();
+
+export default function App () {
+
+    return (
+      < NavigationContainer >
+        <Tab.Navigator
+          screenOptions={({ route }) => ({
+            tabBarIcon: ({ focused, color, size }) => {
+              let colorHex
+              let iconName
+
+              colorHex = focused ? '#004B8D' : 'gray'
+
+              if (route.name === 'Inicio') {
+                iconName = 'home'
+              } else if (route.name === 'Mapa') {
+                iconName = 'map'
+              } else if (route.name === 'Serviços') {
+                iconName = 'list'
+              } else if (route.name === 'Configurações') {
+                iconName = 'sliders'
+              }
+
+              return <Icon name={iconName} size={24} color={colorHex} />;
+
+            },
+          })}
+          tabBarOptions={{
+            activeTintColor: '#004B8D',
+            inactiveTintColor: 'gray',
+          }}
+        >
+          <Tab.Screen name="Inicio" component={HomeStackScreen} />
+          <Tab.Screen name="Mapa" component={mapView} />
+          <Tab.Screen name="Serviços" component={orderView} />
+          <Tab.Screen name="Configurações" component={settingsView} />
+        </Tab.Navigator>
+      </NavigationContainer >
+    );
+}
