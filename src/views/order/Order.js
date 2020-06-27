@@ -2,6 +2,7 @@ import React from 'react';
 import { SafeAreaView, View, StyleSheet, StatusBar, FlatList } from 'react-native';
 import { Text } from 'react-native-elements';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
+import { SwipeListView } from 'react-native-swipe-list-view';
 
 const data = [
     {
@@ -66,12 +67,32 @@ const data = [
     }
 ];
 
-export default function Map () {
+export default function Map() {
     return (
         <View style={styles.container}>
             <StatusBar hidden={false} barStyle="dark-content" backgroundColor="white" translucent />
 
-            <FlatList
+            <SwipeListView
+                data={data}
+                renderItem={(data, rowMap) => (
+                    <View style={styles.item}>
+                        <Text h5 style={styles.text}>{data.item.plan}</Text>
+                        <Text h5 style={styles.text}>Problemas de conexão</Text>
+                        <Text h4 style={styles.text, { padding: 0 }}>{data.item.name}</Text>
+                        <Text h4 style={styles.text}>{data.item.city}</Text>
+                    </View>
+                )}
+                renderHiddenItem={(data, rowMap) => (
+                    <View style={styles.rowBack}>
+                        <Text>Left</Text>
+                        <Text>Right</Text>
+                    </View>
+                )}
+                leftOpenValue={75}
+                rightOpenValue={-75}
+            />
+
+            {/* <FlatList
                 data={data}
                 keyExtractor={item => item.id}
                 renderItem={({ item }) => {
@@ -86,7 +107,8 @@ export default function Map () {
                         </View>
                     );
                 }}
-            />
+            /> */}
+
         </View>
     );
 }

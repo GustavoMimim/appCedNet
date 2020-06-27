@@ -40,6 +40,7 @@
     "react-native-side-nav": "^2.0.2",
     "react-native-svg": "11.0.1",
     "react-native-svg-charts": "^5.3.0",
+    "react-native-swipe-list-view": "^3.1.2",
     "react-native-tab-view": "^2.14.0",
     "react-native-tag-select": "^2.0.0",
     "react-native-user-avatar": "^1.0.7",
