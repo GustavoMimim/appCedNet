@@ -10,21 +10,31 @@ export default function Map () {
         showsUserLocation={true}
         showsMyLocationButton={true}
         style={styles.image}
+        initialRegion={{
+          latitude: -23.040826,
+          longitude: -49.703366,
+          latitudeDelta: 0.0922,
+          longitudeDelta: 0.0421
+        }}
       >
+        <Marker
+          coordinate={{            
+            latitude: -23.040826,
+            longitude: -49.703366,
+          }}
+          title='Sua localização'
+          description='Ford Ka - 2020'
+
+        />
       </MapView>
     </View>
   );
 }
-
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    flexDirection: 'column'
   },
   image: {
     flex: 1,
-    resizeMode: 'contain',
-    justifyContent: 'flex-end',
-    padding: 40
   },
 })

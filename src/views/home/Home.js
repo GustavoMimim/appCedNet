@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, StatusBar } from 'react-native';
+import { View, StatusBar, TouchableOpacity } from 'react-native';
 import { ScrollView } from 'react-native-gesture-handler';
 import { Text, Card, ListItem } from 'react-native-elements';
 
@@ -36,7 +36,7 @@ const vehicles = [
   },
 ]
 
-export default function Home () {
+export default function Home ({ navigation: { navigate } }) {
 
   return (
     <View>
@@ -94,8 +94,11 @@ export default function Home () {
               })
             }
             <View style={{ flexDirection: 'row', justifyContent: 'space-around', paddingTop: 20 }}>
+
               <Text style={{ alignSelf: 'flex-start', color: '#004B8D' }}>Gerenciar</Text>
               <Text style={{ alignSelf: 'flex-end', color: 'gray' }}>Mais</Text>
+
+
             </View>
           </Card>
         </View>
