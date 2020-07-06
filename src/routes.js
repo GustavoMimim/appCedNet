@@ -17,7 +17,12 @@ import orderView from './views/order/Order.js'
 import aboutView from './views/about/About.js'
 import { isSignedIn } from './services/auth.js'
 import User from './views/teste/User.js';
-import Tecnicos from './views/tecnicos/Tecnicos.js';
+import Tecnicos from './views/tecnicos/Tecnicos.js'; /* Técnicos disponíveis e indisponíveis */
+import gerenciarTecnicos from './views/tecnicos/GerenciarTecnicos.js'; /* Gerenciar Informações do Técnico */
+import listaTecnicos from './views/tecnicos/ListaTecnicos.js'; /* Lista de todos os técnicos */
+import Veículos from './views/veiculos/Veiculos.js'; /* Veículos disponíveis e indisponíveis */
+import listaVeiculos from './views/veiculos/ListaVeiculos.js'; /* Lista de todos os veículos */
+import gerenciarVeiculo from './views/veiculos/GerenciarVeiculos.js'; /* Gerenciar Informações do Veículo */
 
 const HomeStack = createStackNavigator();
 
@@ -48,6 +53,12 @@ function HomeStackScreen ({ navigation }) {
         }}
       />
       <HomeStack.Screen name="Dashboard" component={dashboardView} />
+      <HomeStack.Screen name="Técnicos" component={Tecnicos} /> 
+      <HomeStack.Screen name="Informações do Técnico" component={gerenciarTecnicos} />
+      <HomeStack.Screen name="Lista de Técnicos" component={listaTecnicos} />
+      <HomeStack.Screen name="Veículos" component={Veículos} /> 
+      <HomeStack.Screen name="Gerenciar Veículos" component={gerenciarVeiculo} />
+      <HomeStack.Screen name="Lista de Veículos" component={listaVeiculos} />
     </HomeStack.Navigator>
   );
 }

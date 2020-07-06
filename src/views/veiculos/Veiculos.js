@@ -5,60 +5,30 @@ import { ScrollView } from 'react-native-gesture-handler';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import { SwipeListView } from 'react-native-swipe-list-view';
 
-const technical = [
-    {
-      name: 'Gustavo B. Mimim',
-      avatar: 'https://image.flaticon.com/icons/png/512/306/306473.png',
-      tarefas: 6
-    },
-    {
-      name: 'Renan L. R. da Silva',
-      avatar: 'https://image.flaticon.com/icons/png/512/306/306473.png',
-      tarefas: 4
-    },
-    {
-      name: 'Vinicius A. Ribeiro',
-      avatar: 'https://image.flaticon.com/icons/png/512/306/306473.png',
-      tarefas: 3
-    },
-    {
-        name: 'Adriano P. Souza',
-        avatar: 'https://image.flaticon.com/icons/png/512/306/306473.png',
-        tarefas: 1
-    },
-    {
-        name: 'Márcio F. Freitas',
-        avatar: 'https://image.flaticon.com/icons/png/512/306/306473.png',
-        tarefas: 1
-    },
-  ]
+const veiculos = [
+  {
+    name: 'FP5T71Q',
+    avatar: 'https://www.firstcarrental.co.za/images/group-b-suzuki-swift-june2019.jpg',
+    subtitle: 'Ford Ka - 2020'
+  },
+  {
+    name: 'FP5TZ1Q',
+    avatar: 'https://i2.wp.com/blog.twwhiteandsons.co.uk/wp-content/uploads/2014/08/siwft-sport.png?fit=447%2C237&ssl=1',
+    subtitle: 'Kwid - 2019'
+  },
+  {
+    name: 'BEE4R22',
+    avatar: 'https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcR1VdYdn_6WEgG-g405G05ScMlCHysgwIjtwN8RGQu-QqSuxYPd&usqp=CAU',
+    subtitle: 'Mobi - 2020'
+  },
+]
 
-  const technicalIndisponiveis = [
+  const veiculosIndisponiveis = [
     {
-      name: 'Lucas B. Moura',
-      avatar: 'https://img.icons8.com/cotton/2x/cancel-2--v2.png',
-      tarefas: 0
-    },
-    {
-      name: 'Aline O. Pereira',
-      avatar: 'https://img.icons8.com/cotton/2x/cancel-2--v2.png',
-      tarefas: 4
-    },
-    {
-      name: 'João A. Gomes',
-      avatar: 'https://img.icons8.com/cotton/2x/cancel-2--v2.png',
-      tarefas: 3
-    },
-    {
-        name: 'Guilherme P. Cardoso',
-        avatar: 'https://img.icons8.com/cotton/2x/cancel-2--v2.png',
-        tarefas: 1
-    },
-    {
-        name: 'Thainá T. Romero',
-        avatar: 'https://img.icons8.com/cotton/2x/cancel-2--v2.png',
-        tarefas: 1
-    },
+      name: 'BEE4R22',
+    avatar: 'https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcR1VdYdn_6WEgG-g405G05ScMlCHysgwIjtwN8RGQu-QqSuxYPd&usqp=CAU',
+    subtitle: 'Mobi - 2020'
+    }
   ]
 
   export default function Tecnicos () {
@@ -74,21 +44,21 @@ const technical = [
           
           <View>
             <Card
-              title='Técnicos disponíveis'
+              title='Veículos disponíveis'
             >
               {
-                technical.map((u, i) => {
+                veiculos.map((u, i) => {
                   return (
                     <ListItem
                       button onPress={() => {Alert.alert(u.name + ' possui ' + u.tarefas + ' tarefa(s)')}}
                       key={i}
                       roundAvatar
                       title={u.name}
+                      subtitle={u.subtitle}
                       leftAvatar={{ source: { uri: u.avatar } }}
                       containerStyle={{ height: 60 }}
                       bottomDivider
-                      chevron={{ color: 'gray' }}
-                      badge={{ value: u.tarefas, textStyle: { color: 'white' }, containerStyle: { marginTop: 0 } }}
+                      chevron
                     />
                   );
                 })
@@ -96,12 +66,12 @@ const technical = [
             </Card>
 
             <Card
-              title='Técnicos indisponíveis'
+              title='Veículos indisponíveis'
               titleStyle={{color: 'gray'}}
               containerStyle={{backgroundColor: "#eee"}}
             >
               {
-                technicalIndisponiveis.map((u, i) => {
+                veiculosIndisponiveis.map((u, i) => {
                   return (
                     <ListItem
                       button onPress={() => {Alert.alert(u.name + ' não possui possui tarefas no momento.')}}
@@ -109,6 +79,8 @@ const technical = [
                       roundAvatar
                       title={u.name}
                       titleStyle={{color: '#aaa'}}
+                      subtitle={u.subtitle}
+                      subtitleStyle={{color: '#ccc'}}
                       leftAvatar={{ source: { uri: u.avatar } }}
                       containerStyle={{ height: 60 }}
                       bottomDivider

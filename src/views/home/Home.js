@@ -6,22 +6,22 @@ import { Text, Card, ListItem } from 'react-native-elements';
 const technical = [
   {
     name: 'Gustavo B. Mimim',
-    avatar: 'https://cdn2.iconfinder.com/data/icons/ios-7-icons/50/user_male2-512.png',
-    tarefas: 2
+    avatar: 'https://image.flaticon.com/icons/png/512/306/306473.png',
+    tarefas: 6
   },
   {
     name: 'Renan L. R. da Silva',
-    avatar: 'https://cdn2.iconfinder.com/data/icons/ios-7-icons/50/user_male2-512.png',
-    tarefas: 1
+    avatar: 'https://image.flaticon.com/icons/png/512/306/306473.png',
+    tarefas: 4
   },
   {
     name: 'Vinicius A. Ribeiro',
-    avatar: 'https://cdn2.iconfinder.com/data/icons/ios-7-icons/50/user_male2-512.png',
-    tarefas: 4
+    avatar: 'https://image.flaticon.com/icons/png/512/306/306473.png',
+    tarefas: 3
   },
 ]
 
-const vehicles = [
+const veiculos = [
   {
     name: 'FP5T71Q',
     avatar: 'https://www.firstcarrental.co.za/images/group-b-suzuki-swift-june2019.jpg',
@@ -39,6 +39,19 @@ const vehicles = [
   },
 ]
 
+const styles = StyleSheet.create({
+  numeros: {
+    fontSize: 16,
+    alignSelf: 'center',
+    color: 'white',
+    backgroundColor: '#004B8D',
+    paddingHorizontal: 8,
+    paddingVertical: 4,
+    borderRadius: 5
+  },
+});
+
+
 export default function Home ({ navigation: { navigate } }) {
 
   return (
@@ -48,58 +61,59 @@ export default function Home ({ navigation: { navigate } }) {
 
       <ScrollView>
 
-        <View style={{ flexDirection: 'row', alignSelf: 'center' }}>
+        <View style={{ flexDirection: 'row', alignSelf: 'center'}}>
           <Card
-            title='Ordens de serviço'
-            containerStyle={{ width: 150 }}
+            title='Ordens de serviço' titleStyle={{ fontSize: 14 }}
+            containerStyle={{ width: 166, borderRadius: 5 }}
           >
-            <Text>15</Text>
+            <Text style={styles.numeros} onPress={() => navigate('Serviços')}> 10 </Text>
           </Card>
           <Card
-            title='Protocolos'
-            containerStyle={{ width: 150 }}
+            title='Protocolos' titleStyle={{ fontSize: 14 }}
+            containerStyle={{ width: 166, borderRadius: 5 }}
           >
-            <Text>50</Text>
+            <Text style={styles.numeros}> 30 </Text>
           </Card>
         </View>
         <View style={{ flexDirection: 'row', alignSelf: 'center' }}>
           <Card
-            title='Ordens já atendidas'
-            containerStyle={{ width: 150 }}
+            title='Ordens já atendidas' titleStyle={{ fontSize: 14 }}
+            containerStyle={{ width: 166, borderRadius: 5 }}
           >
-            <Text>1</Text>
+            <Text style={styles.numeros}> 12 </Text>
           </Card>
           <Card
-            title='Novos clientes'
-            containerStyle={{ width: 150 }}
+            title='Novos clientes' titleStyle={{ fontSize: 14 }}
+            containerStyle={{ width: 166, borderRadius: 5 }}
           >
-            <Text>15</Text>
+            <Text style={styles.numeros}>  8  </Text>
           </Card>
         </View >
         <View>
           <Card
             title='Técnicos em plantão disponíveis'
+            containerStyle={{ borderRadius: 8 }}
           >
             {
               technical.map((u, i) => {
                 return (
                   <ListItem
-                    button onPress={() => {Alert.alert(u.name + ' possui ' + u.tarefas + ' tarefa(s)')}}
+                    button onPress={() => navigate('Informações do Técnico')}
                     key={i}
                     roundAvatar
                     title={u.name}
-                    leftAvatar={{ source: { uri: u.avatar } }}
+                    leftAvatar={{ source: { uri: u.avatar }}} 
                     containerStyle={{ height: 60 }}
                     bottomDivider
-                    chevron
-                    badge={{ value: u.tarefas, textStyle: { color: 'orange' }, containerStyle: { marginTop: 0 } }}
+                    chevron={{ color: 'gray' }}
+                    badge={{ value: u.tarefas, textStyle: { color: 'white' }, containerStyle: { marginTop: 0 } }}
                   />
                 );
               })
             }
             <View style={{ flexDirection: 'row', justifyContent: 'space-around', paddingTop: 20 }}>
-              <Text style={{ alignSelf: 'flex-start', color: '#004B8D' }}>Gerenciar</Text>
-              <Text style={{ alignSelf: 'flex-end', color: 'gray' }} onPress={() => navigate('Tecnicos')}>Mais</Text>
+              <Text style={{ alignSelf: 'flex-start', color: 'white', backgroundColor: '#004B8D', fontSize: 16, paddingHorizontal: 20, paddingVertical: 6, borderRadius: 5 }} onPress={() => navigate('Lista de Técnicos')}>Gerenciar</Text>
+              <Text style={{ alignSelf: 'flex-end', color: 'white', backgroundColor: '#004B8D', fontSize: 16, paddingHorizontal: 20, paddingVertical: 6, borderRadius: 5 }} onPress={() => navigate('Técnicos')}>     Mais     </Text>
             </View>
             
             
@@ -109,9 +123,10 @@ export default function Home ({ navigation: { navigate } }) {
         <View style={{ paddingBottom: 15 }}>
           <Card
             title='Veículos disponíveis'
+            containerStyle={{ borderRadius: 8 }}
           >
             {
-              vehicles.map((u, i) => {
+              veiculos.map((u, i) => {
                 return (
                   <ListItem
                     key={i}
@@ -121,14 +136,14 @@ export default function Home ({ navigation: { navigate } }) {
                     leftAvatar={{ source: { uri: u.avatar } }}
                     containerStyle={{ height: 60 }}
                     bottomDivider
-                    chevron
+                    chevron={{ color: 'gray' }}
                   />
                 );
               })
             }
             <View style={{ flexDirection: 'row', justifyContent: 'space-around', paddingTop: 20 }}>
-              <Text style={{ alignSelf: 'flex-start', color: '#004B8D' }} onPress={() => {Alert.alert('teste oi')}}>Gerenciar</Text>
-              <Text style={{ alignSelf: 'flex-end', color: 'gray' }}>Mais</Text>
+              <Text style={{ alignSelf: 'flex-start', color: 'white', backgroundColor: '#004B8D', fontSize: 16, paddingHorizontal: 20, paddingVertical: 6, borderRadius: 5 }} onPress={() => navigate('Lista de Veículos')}>Gerenciar</Text>
+              <Text style={{ alignSelf: 'flex-end', color: 'white', backgroundColor: '#004B8D', fontSize: 16, paddingHorizontal: 20, paddingVertical: 6, borderRadius: 5 }} onPress={() => navigate('Veículos')}>     Mais     </Text>
             </View>
           </Card>
         </View>
