@@ -1,5 +1,5 @@
 import React from 'react';
-import { SafeAreaView, View, StyleSheet, StatusBar, FlatList } from 'react-native';
+import { SafeAreaView, View, StyleSheet, StatusBar, FlatList, TouchableHighlight } from 'react-native';
 import { Text } from 'react-native-elements';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import { SwipeListView } from 'react-native-swipe-list-view';
@@ -88,7 +88,7 @@ const data = [
     }
 ];
 
-export default function Map () {
+export default function Order () {
     return (
         <View style={styles.container}>
             <StatusBar hidden={false} barStyle="dark-content" backgroundColor="white" translucent />
@@ -96,6 +96,10 @@ export default function Map () {
             <SwipeListView
                 data={data}
                 renderItem={(data, rowMap) => (
+                    <TouchableHighlight
+                    underlayColor={'#004B8D'}
+                    onPress={() => navigate('Informações do Técnico')}
+                    >
                     <View style={{ flex: 1, margin: 10, alignItems: 'stretch' }}>
                         <View style={styles.item}>
                             <Text h5 style={styles.text}>{data.item.plan + ' - ' + data.item.reason}</Text>
@@ -107,6 +111,7 @@ export default function Map () {
                             </View>
                         </View>
                     </View>
+                    </TouchableHighlight>
                 )}
                 renderHiddenItem={(data, rowMap) => (
                     <View style={styles.rowBack}>
@@ -123,7 +128,6 @@ export default function Map () {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        marginTop: 30
     },
     item: {
         padding: 10,
