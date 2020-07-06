@@ -1,20 +1,23 @@
 import React from 'react';
-import { View, StatusBar, TouchableOpacity } from 'react-native';
+import { View, StatusBar, Alert, StyleSheet } from 'react-native';
 import { ScrollView } from 'react-native-gesture-handler';
 import { Text, Card, ListItem } from 'react-native-elements';
 
 const technical = [
   {
-    name: 'Gustavo Bergamo Mimim',
-    avatar: 'https://scontent.fmii6-1.fna.fbcdn.net/v/t1.0-9/78975144_2589224154526037_7678468795790262272_n.jpg?_nc_cat=107&_nc_sid=09cbfe&_nc_oc=AQkWednD4nLHu4WZMZJBEcTXwvHPwtL2VhlPh24ziHlopB36GYkKxlBmilYpQ3ZKAgo&_nc_ht=scontent.fmii6-1.fna&oh=f46d5f5bb19d0f95a977dc46e097982c&oe=5ED373E7'
+    name: 'Gustavo B. Mimim',
+    avatar: 'https://cdn2.iconfinder.com/data/icons/ios-7-icons/50/user_male2-512.png',
+    tarefas: 2
   },
   {
-    name: 'Renan Leonardo',
-    avatar: 'https://scontent.fmii6-1.fna.fbcdn.net/v/t1.0-9/67800804_2403703813056803_5865220211434586112_o.jpg?_nc_cat=100&_nc_sid=09cbfe&_nc_oc=AQkqN8t8HVP7maTchR-uOUeY5O3O9RFwFU9Q2s_Mpr7JhDVVPkA2Tlc2sIKm5cAKoKU&_nc_ht=scontent.fmii6-1.fna&oh=6d91985be9a946aef20efec361d619fe&oe=5ED600D7'
+    name: 'Renan L. R. da Silva',
+    avatar: 'https://cdn2.iconfinder.com/data/icons/ios-7-icons/50/user_male2-512.png',
+    tarefas: 1
   },
   {
-    name: 'Vinicius Andrade Ribeiro',
-    avatar: 'https://scontent.fmii6-1.fna.fbcdn.net/v/t1.0-9/60420035_2577508522333975_5697119778494218240_o.jpg?_nc_cat=105&_nc_sid=09cbfe&_nc_oc=AQnnpDOFxGtN8Gl5z2C5VgGZzaG79iTw3a46SzvUe-8SHgV37Rrw_gyJMf-tOtQcPmg&_nc_ht=scontent.fmii6-1.fna&oh=47a3097a09e4015d19728c8203ce896c&oe=5ED4EE90'
+    name: 'Vinicius A. Ribeiro',
+    avatar: 'https://cdn2.iconfinder.com/data/icons/ios-7-icons/50/user_male2-512.png',
+    tarefas: 4
   },
 ]
 
@@ -73,7 +76,6 @@ export default function Home ({ navigation: { navigate } }) {
             <Text>15</Text>
           </Card>
         </View >
-
         <View>
           <Card
             title='Técnicos em plantão disponíveis'
@@ -82,6 +84,7 @@ export default function Home ({ navigation: { navigate } }) {
               technical.map((u, i) => {
                 return (
                   <ListItem
+                    button onPress={() => {Alert.alert(u.name + ' possui ' + u.tarefas + ' tarefa(s)')}}
                     key={i}
                     roundAvatar
                     title={u.name}
@@ -89,17 +92,17 @@ export default function Home ({ navigation: { navigate } }) {
                     containerStyle={{ height: 60 }}
                     bottomDivider
                     chevron
+                    badge={{ value: u.tarefas, textStyle: { color: 'orange' }, containerStyle: { marginTop: 0 } }}
                   />
                 );
               })
             }
             <View style={{ flexDirection: 'row', justifyContent: 'space-around', paddingTop: 20 }}>
-
               <Text style={{ alignSelf: 'flex-start', color: '#004B8D' }}>Gerenciar</Text>
-              <Text style={{ alignSelf: 'flex-end', color: 'gray' }}>Mais</Text>
-
-
+              <Text style={{ alignSelf: 'flex-end', color: 'gray' }} onPress={() => navigate('Tecnicos')}>Mais</Text>
             </View>
+            
+            
           </Card>
         </View>
 
@@ -124,7 +127,7 @@ export default function Home ({ navigation: { navigate } }) {
               })
             }
             <View style={{ flexDirection: 'row', justifyContent: 'space-around', paddingTop: 20 }}>
-              <Text style={{ alignSelf: 'flex-start', color: '#004B8D' }}>Gerenciar</Text>
+              <Text style={{ alignSelf: 'flex-start', color: '#004B8D' }} onPress={() => {Alert.alert('teste oi')}}>Gerenciar</Text>
               <Text style={{ alignSelf: 'flex-end', color: 'gray' }}>Mais</Text>
             </View>
           </Card>

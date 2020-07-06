@@ -1,0 +1,27 @@
+<?php
+
+namespace App\Http\Controllers;
+
+use Illuminate\Http\Request;
+use App\User;
+
+class UsersController extends Controller
+{
+    public function index() {
+        $users = User::all();
+
+        return response()->json($users);
+    }
+
+    public function store(Request $request) {
+
+        $user = User::create([
+            "login"=>$request->input("login"),
+            "password"=>$request->input("password")
+        ]);
+    
+        return $user;
+    
+    }
+}
+

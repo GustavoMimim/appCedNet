@@ -16,6 +16,8 @@ import settingsView from './views/settings/Settings.js'
 import orderView from './views/order/Order.js'
 import aboutView from './views/about/About.js'
 import { isSignedIn } from './services/auth.js'
+import User from './views/teste/User.js';
+import Tecnicos from './views/tecnicos/Tecnicos.js';
 
 const HomeStack = createStackNavigator();
 
