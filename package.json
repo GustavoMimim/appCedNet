@@ -17,11 +17,7 @@
     "@react-navigation/native": "^5.2.3",
     "@react-navigation/stack": "^5.2.13",
     "@welldone-software/why-did-you-render": "^4.1.3",
-<<<<<<< HEAD
-    "expo": "~37.0.6",
-=======
     "expo": "^37.0.12",
->>>>>>> 9867c67ae07ac38a60c3f1def9bf77726ab93bff
     "native-base": "^2.13.12",
     "prop-types": "^15.7.2",
     "react": "^16.13.1",
