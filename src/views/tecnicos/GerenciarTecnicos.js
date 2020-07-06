@@ -162,7 +162,8 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         justifyContent: 'flex-start',
-        paddingTop: 0
+        paddingTop: 0,
+        backgroundColor: 'white'
     },
     prefix: {
         marginTop: 15,

@@ -5,7 +5,7 @@ export default function About () {
   return (
     <View>
       <StatusBar hidden={false} />
-      <Text>Somos legais!</Text>
+      <Text>Não somos legais, somos fodinhas!</Text>
     </View>
   );
 }
