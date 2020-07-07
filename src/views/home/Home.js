@@ -2,45 +2,8 @@ import React from 'react';
 import { View, StatusBar, Alert, StyleSheet } from 'react-native';
 import { ScrollView } from 'react-native-gesture-handler';
 import { Text, Card, ListItem } from 'react-native-elements';
-
-const technical = [
-  {
-    name: 'Gustavo B. Mimim',
-    primeironome: 'Gustavo',
-    avatar: 'https://image.flaticon.com/icons/png/512/306/306473.png',
-    tarefas: 3
-  },
-  {
-    name: 'Renan L. R. da Silva',
-    primeironome: 'Renan',
-    avatar: 'https://image.flaticon.com/icons/png/512/306/306473.png',
-    tarefas: 2
-  },
-  {
-    name: 'Vinicius A. Ribeiro',
-    primeironome: 'Vinicius',
-    avatar: 'https://image.flaticon.com/icons/png/512/306/306473.png',
-    tarefas: 2
-  },
-]
-
-const veiculos = [
-  {
-    name: 'CDU-2532',
-    avatar: 'https://www.firstcarrental.co.za/images/group-b-suzuki-swift-june2019.jpg',
-    subtitle: 'Ford Ka - 2020'
-  },
-  {
-    name: 'TYA-8991',
-    avatar: 'https://i2.wp.com/blog.twwhiteandsons.co.uk/wp-content/uploads/2014/08/siwft-sport.png?fit=447%2C237&ssl=1',
-    subtitle: 'Kwid - 2019'
-  },
-  {
-    name: 'MTR-4318',
-    avatar: 'https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcR1VdYdn_6WEgG-g405G05ScMlCHysgwIjtwN8RGQu-QqSuxYPd&usqp=CAU',
-    subtitle: 'Mobi - 2020'
-  },
-]
+import dadosTecnicos from '../../banco/bdTecnicos'; /* Importação do banco bdTecnicos */
+import dadosVeiculos from '../../banco/bdVeiculos'; /* Importação do banco bdVeiculos */
 
 const styles = StyleSheet.create({
   numeros: {
@@ -69,7 +32,7 @@ export default function Home ({ navigation: { navigate } }) {
             title='Ordens de serviço' titleStyle={{ fontSize: 14 }}
             containerStyle={{ width: 166, borderRadius: 5 }}
           >
-            <Text style={styles.numeros} onPress={() => navigate('Serviços')}> 10 </Text>
+            <Text style={styles.numeros} onPress={() => navigate('Serviços')}>  9  </Text>
           </Card>
           <Card
             title='Protocolos' titleStyle={{ fontSize: 14 }}
@@ -98,14 +61,14 @@ export default function Home ({ navigation: { navigate } }) {
             containerStyle={{ borderRadius: 8 }}
           >
             {
-              technical.map((u, i) => {
+              dadosTecnicos.filter(a => ((a.primeironome == 'Gustavo') || (a.primeironome == 'Renan') || (a.primeironome == 'Vinicius') )).map((u, i) => {
                 return (
                   <ListItem
                     button onPress={() => navigate('Informações - ' + u.primeironome)}
                     key={i}
                     roundAvatar
-                    title={u.name}
-                    leftAvatar={{ source: { uri: u.avatar }}} 
+                    title={u.primeironome}
+                    leftAvatar={{ source: { uri: 'https://image.flaticon.com/icons/png/512/306/306473.png' }}} 
                     containerStyle={{ height: 60 }}
                     bottomDivider
                     chevron={{ color: 'gray' }}
@@ -129,7 +92,7 @@ export default function Home ({ navigation: { navigate } }) {
             containerStyle={{ borderRadius: 8 }}
           >
             {
-              veiculos.map((u, i) => {
+              dadosVeiculos.filter(a => (a.disponivel == true)).map((u, i) => {
                 return (
                   <ListItem
                     button onPress={() => navigate('Gerenciar Veículo - ' + u.name)}

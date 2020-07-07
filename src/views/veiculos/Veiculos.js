@@ -4,32 +4,7 @@ import { Text, Card, ListItem } from 'react-native-elements';
 import { ScrollView } from 'react-native-gesture-handler';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import { SwipeListView } from 'react-native-swipe-list-view';
-
-const veiculos = [
-  {
-    name: 'CDU-2532',
-    avatar: 'https://www.firstcarrental.co.za/images/group-b-suzuki-swift-june2019.jpg',
-    subtitle: 'Ford Ka - 2020'
-  },
-  {
-    name: 'TYA-8991',
-    avatar: 'https://i2.wp.com/blog.twwhiteandsons.co.uk/wp-content/uploads/2014/08/siwft-sport.png?fit=447%2C237&ssl=1',
-    subtitle: 'Kwid - 2019'
-  },
-  {
-    name: 'MTR-4318',
-    avatar: 'https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcR1VdYdn_6WEgG-g405G05ScMlCHysgwIjtwN8RGQu-QqSuxYPd&usqp=CAU',
-    subtitle: 'Mobi - 2020'
-  },
-]
-
-  const veiculosIndisponiveis = [
-    {
-      name: 'QMM-2353',
-    avatar: 'https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcR1VdYdn_6WEgG-g405G05ScMlCHysgwIjtwN8RGQu-QqSuxYPd&usqp=CAU',
-    subtitle: 'Mobi - 2020'
-    }
-  ]
+import dadosVeiculos from '../../banco/bdVeiculos'; /* Importação do banco bdVeiculos */
 
   export default function Tecnicos () {
 
@@ -47,7 +22,7 @@ const veiculos = [
               title='Veículos disponíveis'
             >
               {
-                veiculos.map((u, i) => {
+                dadosVeiculos.filter(a => (a.disponivel == true)).map((u, i) => {
                   return (
                     <ListItem
                       button onPress={() => {Alert.alert(u.name + ' possui ' + u.tarefas + ' tarefa(s)')}}
@@ -71,7 +46,7 @@ const veiculos = [
               containerStyle={{backgroundColor: "#eee"}}
             >
               {
-                veiculosIndisponiveis.map((u, i) => {
+                dadosVeiculos.filter(a => (a.disponivel == false)).map((u, i) => {
                   return (
                     <ListItem
                       button onPress={() => {Alert.alert(u.name + ' não possui possui tarefas no momento.')}}

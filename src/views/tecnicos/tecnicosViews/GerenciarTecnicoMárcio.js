@@ -1,12 +1,17 @@
 import React from 'react';
-import { Text, View, StatusBar, StyleSheet, Alert, Image, ScrollView  } from 'react-native';
-import { Button } from 'react-native-elements';
+import { SafeAreaView, View, StyleSheet, StatusBar, Alert, FlatList, Image, TextInput } from 'react-native';
+import { Text, Card, ListItem, Button, TouchableOpacity } from 'react-native-elements';
+import { ScrollView } from 'react-native-gesture-handler';
+import FontAwesome from 'react-native-vector-icons/FontAwesome';
+import { SwipeListView } from 'react-native-swipe-list-view';
 
-export default function Home () {
-  
-  return (
-    
-    <View style={styles.container}>
+
+
+export default function Tecnicos() {
+
+
+    return (
+        <View style={styles.container}>
 
             <View style={{
                 marginHorizontal: 0,
@@ -31,35 +36,35 @@ export default function Home () {
 
                 <View style={{ flexDirection: 'column', marginTop: 0 }}>
                     <Text style={styles.prefix}>Nome:</Text>
-                    <Text style={styles.content}>Vinicius Andrade Ribeiro</Text>
+                    <Text style={styles.content}>Márcio Fernando Freitas</Text>
                 </View>
                 <View
                     style={styles.linha}
                 />
                 <View style={{ flexDirection: 'column', marginTop: 8 }}>
                     <Text style={styles.prefix}>Cargo:</Text>
-                    <Text style={styles.content}>CEO</Text>
+                    <Text style={styles.content}>Técnico em redes</Text>
                 </View>
                 <View
                     style={styles.linha}
                 />
                 <View style={{ flexDirection: 'column', marginTop: 8 }}>
                     <Text style={styles.prefix}>E-mail:</Text>
-                    <Text style={styles.content}>ceo@cednet.com.br</Text>
+                    <Text style={styles.content}>redes@cednet.com.br</Text>
                 </View>
                 <View
                     style={styles.linha}
                 />
                 <View style={{ flexDirection: 'column', marginTop: 8 }}>
                     <Text style={styles.prefix}>Telefone: </Text>
-                    <Text style={styles.content}>(14) 3322-7777</Text>
+                    <Text style={styles.content}>(14) 3322-4913</Text>
                 </View>
                 <View
                     style={styles.linha}
                 />
                 <View style={{ flexDirection: 'column', marginTop: 8 }}>
                     <Text style={styles.prefix}>Celular: </Text>
-                    <Text style={styles.content}>(14) 97566-6666</Text>
+                    <Text style={styles.content}>(14) 97566-4442</Text>
                 </View>
                 <View
                     style={styles.linha}

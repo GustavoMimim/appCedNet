@@ -18,17 +18,23 @@ import aboutView from './views/about/About.js'
 import { isSignedIn } from './services/auth.js'
 import User from './views/teste/User.js';
 import Tecnicos from './views/tecnicos/Tecnicos.js'; /* Técnicos disponíveis e indisponíveis */
-import gerenciarTecnicoGustavo from './views/tecnicos/GerenciarTecnicoGustavo.js'; /* Gerenciar Informações do Técnico Gustavo */
-import gerenciarTecnicoVinicius from './views/tecnicos/GerenciarTecnicoVinicius.js'; /* Gerenciar Informações do Técnico Vinicius */
-import gerenciarTecnicoRenan from './views/tecnicos/GerenciarTecnicoRenan.js'; /* Gerenciar Informações do Técnico Vinicius */
-import gerenciarTecnicoAline from './views/tecnicos/GerenciarTecnicoAline.js'; /* Gerenciar Informações do Técnico Aline */
+import gerenciarTecnicoGustavo from './views/tecnicos/tecnicosViews/GerenciarTecnicoGustavo.js'; /* Gerenciar Informações do Técnico Gustavo */
+import gerenciarTecnicoVinicius from './views/tecnicos/tecnicosViews/GerenciarTecnicoVinicius.js'; /* Gerenciar Informações do Técnico Vinicius */
+import gerenciarTecnicoRenan from './views/tecnicos/tecnicosViews/GerenciarTecnicoRenan.js'; /* Gerenciar Informações do Técnico Renan */
+import gerenciarTecnicoAdriano from './views/tecnicos/tecnicosViews/GerenciarTecnicoAdriano.js'; /* Gerenciar Informações do Técnico Adriano */
+import gerenciarTecnicoAline from './views/tecnicos/tecnicosViews/GerenciarTecnicoAline.js'; /* Gerenciar Informações do Técnico Aline */
+import gerenciarTecnicoGuilherme from './views/tecnicos/tecnicosViews/GerenciarTecnicoGuilherme.js'; /* Gerenciar Informações do Técnico Guilherme */
+import gerenciarTecnicoJoao from './views/tecnicos/tecnicosViews/GerenciarTecnicoJoão.js'; /* Gerenciar Informações do Técnico João */
+import gerenciarTecnicoLucas from './views/tecnicos/tecnicosViews/GerenciarTecnicoLucas.js'; /* Gerenciar Informações do Técnico Lucas */
+import gerenciarTecnicoMarcio from './views/tecnicos/tecnicosViews/GerenciarTecnicoMárcio.js'; /* Gerenciar Informações do Técnico Márcio */
+import gerenciarTecnicoThaina from './views/tecnicos/tecnicosViews/GerenciarTecnicoThainá.js'; /* Gerenciar Informações do Técnico Thainá */
 import listaTecnicos from './views/tecnicos/ListaTecnicos.js'; /* Lista de todos os técnicos */
 import Veículos from './views/veiculos/Veiculos.js'; /* Veículos disponíveis e indisponíveis */
 import listaVeiculos from './views/veiculos/ListaVeiculos.js'; /* Lista de todos os veículos */
-import gerenciarVeiculoCDU from './views/veiculos/GerenciarVeiculoCDU.js'; /* Gerenciar Informações do Veículo CDU-2532 */
-import gerenciarVeiculoTYA from './views/veiculos/GerenciarVeiculoTYA.js'; /* Gerenciar Informações do Veículo TYA-8991 */
-import gerenciarVeiculoMTR from './views/veiculos/GerenciarVeiculoMTR.js'; /* Gerenciar Informações do Veículo MTR-4318 */
-import gerenciarVeiculoQMM from './views/veiculos/GerenciarVeiculoQMM.js'; /* Gerenciar Informações do Veículo QMM-2353 */
+import gerenciarVeiculoCDU from './views/veiculos/veiculosViews/GerenciarVeiculoCDU.js'; /* Gerenciar Informações do Veículo CDU-2532 */
+import gerenciarVeiculoTYA from './views/veiculos/veiculosViews/GerenciarVeiculoTYA.js'; /* Gerenciar Informações do Veículo TYA-8991 */
+import gerenciarVeiculoMTR from './views/veiculos/veiculosViews/GerenciarVeiculoMTR.js'; /* Gerenciar Informações do Veículo MTR-4318 */
+import gerenciarVeiculoQMM from './views/veiculos/veiculosViews/GerenciarVeiculoQMM.js'; /* Gerenciar Informações do Veículo QMM-2353 */
 
 const HomeStack = createStackNavigator();
 
@@ -63,7 +69,13 @@ function HomeStackScreen ({ navigation }) {
       <HomeStack.Screen name="Informações - Gustavo" component={gerenciarTecnicoGustavo} />
       <HomeStack.Screen name="Informações - Vinicius" component={gerenciarTecnicoVinicius} />
       <HomeStack.Screen name="Informações - Renan" component={gerenciarTecnicoRenan} />
+      <HomeStack.Screen name="Informações - Adriano" component={gerenciarTecnicoAdriano} />
       <HomeStack.Screen name="Informações - Aline" component={gerenciarTecnicoAline} />
+      <HomeStack.Screen name="Informações - Guilherme" component={gerenciarTecnicoGuilherme} />
+      <HomeStack.Screen name="Informações - João" component={gerenciarTecnicoJoao} />
+      <HomeStack.Screen name="Informações - Lucas" component={gerenciarTecnicoLucas} />
+      <HomeStack.Screen name="Informações - Márcio" component={gerenciarTecnicoMarcio} />
+      <HomeStack.Screen name="Informações - Thainá" component={gerenciarTecnicoThaina} />
       <HomeStack.Screen name="Lista de Técnicos" component={listaTecnicos} />
       <HomeStack.Screen name="Veículos" component={Veículos} /> 
       <HomeStack.Screen name="Gerenciar Veículo - CDU-2532" component={gerenciarVeiculoCDU} />
@@ -83,6 +95,25 @@ function HomeStackOrder ({ navigation }) {
         component={orderView}
         options={{
           title: 'SERVIÇOS',
+          headerShown: true,
+          headerTitleStyle: {
+            color: '#004B8D'
+          },
+
+        }}
+      />
+    </HomeStack.Navigator>
+  );
+}
+
+function HomeStackSettings ({ navigation }) {
+  return (
+    <HomeStack.Navigator>
+      <HomeStack.Screen
+        name="CONFIGURAÇÕES"
+        component={settingsView}
+        options={{
+          title: 'CONFIGURAÇÕES',
           headerShown: true,
           headerTitleStyle: {
             color: '#004B8D'
@@ -130,7 +161,7 @@ export default function App () {
           <Tab.Screen name="Inicio" component={HomeStackScreen} />
           <Tab.Screen name="Mapa" component={mapView} />
           <Tab.Screen name="Serviços" component={HomeStackOrder} />
-          <Tab.Screen name="Configurações" component={settingsView} />
+          <Tab.Screen name="Configurações" component={HomeStackSettings} />
         </Tab.Navigator>
       </NavigationContainer >
     );
