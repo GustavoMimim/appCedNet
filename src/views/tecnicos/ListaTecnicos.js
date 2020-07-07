@@ -8,57 +8,67 @@ import { SwipeListView } from 'react-native-swipe-list-view';
 const tecnicos = [
     {
         name: 'Adriano Pereira Souza',
+        primeironome: 'Adriano',
         avatar: 'https://image.flaticon.com/icons/png/512/306/306473.png',
         subtitle: 'Disponível'
     },
     {
         name: 'Aline Oliveira Pereira',
+        primeironome: 'Aline',
         avatar: 'https://image.flaticon.com/icons/png/512/306/306473.png',
         subtitle: 'Indisponível'
     },
     {
         name: 'Guilherme Pessoa Cardoso',
+        primeironome: 'Guilherme',
         avatar: 'https://image.flaticon.com/icons/png/512/306/306473.png',
         subtitle: 'Indisponível'
     },
     {
         name: 'Gustavo Bergamo Mimim',
+        primeironome: 'Gustavo',
         avatar: 'https://image.flaticon.com/icons/png/512/306/306473.png',
         subtitle: 'Disponível'
     },
     {
         name: 'João Armando Gomes',
+        primeironome: 'João',
         avatar: 'https://image.flaticon.com/icons/png/512/306/306473.png',
         subtitle: 'Indisponível'
     },
     {
         name: 'Lucas Beto Moura',
+        primeironome: 'Lucas',
         avatar: 'https://image.flaticon.com/icons/png/512/306/306473.png',
         subtitle: 'Indisponível'
     },
     {
         name: 'Márcio Fernando Freitas',
+        primeironome: 'Márcio',
         avatar: 'https://image.flaticon.com/icons/png/512/306/306473.png',
         subtitle: 'Disponível'
     },
     {
         name: 'Renan Leonardo Ramos da Silva',
+        primeironome: 'Renan',
         avatar: 'https://image.flaticon.com/icons/png/512/306/306473.png',
         subtitle: 'Disponível'
     },
     {
         name: 'Thainá Toga Romero',
+        primeironome: 'Thainá',
         avatar: 'https://image.flaticon.com/icons/png/512/306/306473.png',
         subtitle: 'Indisponível'
     },
     {
         name: 'Vinicius Andrade Ribeiro',
+        primeironome: 'Vinicius',
         avatar: 'https://image.flaticon.com/icons/png/512/306/306473.png',
         subtitle: 'Disponível'
     }
 ]
 
-export default function Tecnicos() {
+export default function Tecnicos({ navigation: { navigate } }) {
 
 
     return (
@@ -73,7 +83,7 @@ export default function Tecnicos() {
                         tecnicos.map((u, i) => {
                             return (
                                 <ListItem
-                                    button onPress={() => { Alert.alert(u.name) }}
+                                    button onPress={() => navigate('Informações - ' + u.primeironome)}
                                     key={i}
                                     roundAvatar
                                     title={u.name}

@@ -7,28 +7,28 @@ import { SwipeListView } from 'react-native-swipe-list-view';
 
 const veiculos = [
     {
-        name: 'FP5T71Q',
+        name: 'CDU-2532',
         avatar: 'https://www.firstcarrental.co.za/images/group-b-suzuki-swift-june2019.jpg',
         subtitle: 'Ford Ka - 2020'
     },
     {
-        name: 'FP5TZ1Q',
+        name: 'TYA-8991',
         avatar: 'https://i2.wp.com/blog.twwhiteandsons.co.uk/wp-content/uploads/2014/08/siwft-sport.png?fit=447%2C237&ssl=1',
         subtitle: 'Kwid - 2019'
     },
     {
-        name: 'BEE4R22',
+        name: 'MTR-4318',
         avatar: 'https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcR1VdYdn_6WEgG-g405G05ScMlCHysgwIjtwN8RGQu-QqSuxYPd&usqp=CAU',
         subtitle: 'Mobi - 2020'
     },
     {
-        name: 'BEE4R22',
+        name: 'QMM-2353',
         avatar: 'https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcR1VdYdn_6WEgG-g405G05ScMlCHysgwIjtwN8RGQu-QqSuxYPd&usqp=CAU',
         subtitle: 'Mobi - 2020'
     }
 ]
 
-export default function Veiculos() {
+export default function Veiculos({ navigation: { navigate } }) {
 
 
     return (
@@ -43,7 +43,7 @@ export default function Veiculos() {
                         veiculos.map((u, i) => {
                             return (
                                 <ListItem
-                                    button onPress={() => { Alert.alert(u.name) }}
+                                    button onPress={() => navigate('Gerenciar Veículo - ' + u.name)}
                                     key={i}
                                     roundAvatar
                                     title={u.name}

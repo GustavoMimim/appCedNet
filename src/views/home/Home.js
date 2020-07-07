@@ -6,34 +6,37 @@ import { Text, Card, ListItem } from 'react-native-elements';
 const technical = [
   {
     name: 'Gustavo B. Mimim',
+    primeironome: 'Gustavo',
     avatar: 'https://image.flaticon.com/icons/png/512/306/306473.png',
-    tarefas: 6
+    tarefas: 3
   },
   {
     name: 'Renan L. R. da Silva',
+    primeironome: 'Renan',
     avatar: 'https://image.flaticon.com/icons/png/512/306/306473.png',
-    tarefas: 4
+    tarefas: 2
   },
   {
     name: 'Vinicius A. Ribeiro',
+    primeironome: 'Vinicius',
     avatar: 'https://image.flaticon.com/icons/png/512/306/306473.png',
-    tarefas: 3
+    tarefas: 2
   },
 ]
 
 const veiculos = [
   {
-    name: 'FP5T71Q',
+    name: 'CDU-2532',
     avatar: 'https://www.firstcarrental.co.za/images/group-b-suzuki-swift-june2019.jpg',
     subtitle: 'Ford Ka - 2020'
   },
   {
-    name: 'FP5TZ1Q',
+    name: 'TYA-8991',
     avatar: 'https://i2.wp.com/blog.twwhiteandsons.co.uk/wp-content/uploads/2014/08/siwft-sport.png?fit=447%2C237&ssl=1',
     subtitle: 'Kwid - 2019'
   },
   {
-    name: 'BEE4R22',
+    name: 'MTR-4318',
     avatar: 'https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcR1VdYdn_6WEgG-g405G05ScMlCHysgwIjtwN8RGQu-QqSuxYPd&usqp=CAU',
     subtitle: 'Mobi - 2020'
   },
@@ -98,7 +101,7 @@ export default function Home ({ navigation: { navigate } }) {
               technical.map((u, i) => {
                 return (
                   <ListItem
-                    button onPress={() => navigate('Informações do Técnico')}
+                    button onPress={() => navigate('Informações - ' + u.primeironome)}
                     key={i}
                     roundAvatar
                     title={u.name}
@@ -129,6 +132,7 @@ export default function Home ({ navigation: { navigate } }) {
               veiculos.map((u, i) => {
                 return (
                   <ListItem
+                    button onPress={() => navigate('Gerenciar Veículo - ' + u.name)}
                     key={i}
                     roundAvatar
                     title={u.name}

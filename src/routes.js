@@ -18,11 +18,17 @@ import aboutView from './views/about/About.js'
 import { isSignedIn } from './services/auth.js'
 import User from './views/teste/User.js';
 import Tecnicos from './views/tecnicos/Tecnicos.js'; /* Técnicos disponíveis e indisponíveis */
-import gerenciarTecnicos from './views/tecnicos/GerenciarTecnicos.js'; /* Gerenciar Informações do Técnico */
+import gerenciarTecnicoGustavo from './views/tecnicos/GerenciarTecnicoGustavo.js'; /* Gerenciar Informações do Técnico Gustavo */
+import gerenciarTecnicoVinicius from './views/tecnicos/GerenciarTecnicoVinicius.js'; /* Gerenciar Informações do Técnico Vinicius */
+import gerenciarTecnicoRenan from './views/tecnicos/GerenciarTecnicoRenan.js'; /* Gerenciar Informações do Técnico Vinicius */
+import gerenciarTecnicoAline from './views/tecnicos/GerenciarTecnicoAline.js'; /* Gerenciar Informações do Técnico Aline */
 import listaTecnicos from './views/tecnicos/ListaTecnicos.js'; /* Lista de todos os técnicos */
 import Veículos from './views/veiculos/Veiculos.js'; /* Veículos disponíveis e indisponíveis */
 import listaVeiculos from './views/veiculos/ListaVeiculos.js'; /* Lista de todos os veículos */
-import gerenciarVeiculo from './views/veiculos/GerenciarVeiculos.js'; /* Gerenciar Informações do Veículo */
+import gerenciarVeiculoCDU from './views/veiculos/GerenciarVeiculoCDU.js'; /* Gerenciar Informações do Veículo CDU-2532 */
+import gerenciarVeiculoTYA from './views/veiculos/GerenciarVeiculoTYA.js'; /* Gerenciar Informações do Veículo TYA-8991 */
+import gerenciarVeiculoMTR from './views/veiculos/GerenciarVeiculoMTR.js'; /* Gerenciar Informações do Veículo MTR-4318 */
+import gerenciarVeiculoQMM from './views/veiculos/GerenciarVeiculoQMM.js'; /* Gerenciar Informações do Veículo QMM-2353 */
 
 const HomeStack = createStackNavigator();
 
@@ -54,10 +60,16 @@ function HomeStackScreen ({ navigation }) {
       />
       <HomeStack.Screen name="Dashboard" component={dashboardView} />
       <HomeStack.Screen name="Técnicos" component={Tecnicos} /> 
-      <HomeStack.Screen name="Informações do Técnico" component={gerenciarTecnicos} />
+      <HomeStack.Screen name="Informações - Gustavo" component={gerenciarTecnicoGustavo} />
+      <HomeStack.Screen name="Informações - Vinicius" component={gerenciarTecnicoVinicius} />
+      <HomeStack.Screen name="Informações - Renan" component={gerenciarTecnicoRenan} />
+      <HomeStack.Screen name="Informações - Aline" component={gerenciarTecnicoAline} />
       <HomeStack.Screen name="Lista de Técnicos" component={listaTecnicos} />
       <HomeStack.Screen name="Veículos" component={Veículos} /> 
-      <HomeStack.Screen name="Gerenciar Veículos" component={gerenciarVeiculo} />
+      <HomeStack.Screen name="Gerenciar Veículo - CDU-2532" component={gerenciarVeiculoCDU} />
+      <HomeStack.Screen name="Gerenciar Veículo - TYA-8991" component={gerenciarVeiculoTYA} />
+      <HomeStack.Screen name="Gerenciar Veículo - MTR-4318" component={gerenciarVeiculoMTR} />
+      <HomeStack.Screen name="Gerenciar Veículo - QMM-2353" component={gerenciarVeiculoQMM} />
       <HomeStack.Screen name="Lista de Veículos" component={listaVeiculos} />
     </HomeStack.Navigator>
   );
