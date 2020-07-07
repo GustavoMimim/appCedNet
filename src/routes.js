@@ -75,6 +75,25 @@ function HomeStackScreen ({ navigation }) {
   );
 }
 
+function HomeStackOrder ({ navigation }) {
+  return (
+    <HomeStack.Navigator>
+      <HomeStack.Screen
+        name="SERVIÇOS"
+        component={orderView}
+        options={{
+          title: 'SERVIÇOS',
+          headerShown: true,
+          headerTitleStyle: {
+            color: '#004B8D'
+          },
+
+        }}
+      />
+    </HomeStack.Navigator>
+  );
+}
+
 const Tab = createBottomTabNavigator();
 
 export default function App () {
@@ -110,7 +129,7 @@ export default function App () {
         >
           <Tab.Screen name="Inicio" component={HomeStackScreen} />
           <Tab.Screen name="Mapa" component={mapView} />
-          <Tab.Screen name="Serviços" component={orderView} />
+          <Tab.Screen name="Serviços" component={HomeStackOrder} />
           <Tab.Screen name="Configurações" component={settingsView} />
         </Tab.Navigator>
       </NavigationContainer >
