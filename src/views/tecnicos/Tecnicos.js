@@ -5,6 +5,7 @@ import { ScrollView } from 'react-native-gesture-handler';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import { SwipeListView } from 'react-native-swipe-list-view';
 
+
 const technical = [
   {
     name: 'Gustavo B. Mimim',
@@ -90,7 +91,7 @@ export default function Tecnicos() {
               technical.map((u, i) => {
                 return (
                   <ListItem
-                    button onPress={() => { Alert.alert(u.primeironome + ' possui ' + u.tarefas + ' tarefa(s) \n testeffffffff') }}
+                    button onPress={() => { Alert.alert(u.primeironome + ' possui ' + u.tarefas + ' tarefa(s)') }}
                     key={i}
                     roundAvatar
                     title={u.name}

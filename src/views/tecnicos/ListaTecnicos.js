@@ -4,69 +4,8 @@ import { Text, Card, ListItem } from 'react-native-elements';
 import { ScrollView } from 'react-native-gesture-handler';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import { SwipeListView } from 'react-native-swipe-list-view';
-
-const tecnicos = [
-    {
-        name: 'Adriano Pereira Souza',
-        primeironome: 'Adriano',
-        avatar: 'https://image.flaticon.com/icons/png/512/306/306473.png',
-        subtitle: 'Disponível'
-    },
-    {
-        name: 'Aline Oliveira Pereira',
-        primeironome: 'Aline',
-        avatar: 'https://image.flaticon.com/icons/png/512/306/306473.png',
-        subtitle: 'Indisponível'
-    },
-    {
-        name: 'Guilherme Pessoa Cardoso',
-        primeironome: 'Guilherme',
-        avatar: 'https://image.flaticon.com/icons/png/512/306/306473.png',
-        subtitle: 'Indisponível'
-    },
-    {
-        name: 'Gustavo Bergamo Mimim',
-        primeironome: 'Gustavo',
-        avatar: 'https://image.flaticon.com/icons/png/512/306/306473.png',
-        subtitle: 'Disponível'
-    },
-    {
-        name: 'João Armando Gomes',
-        primeironome: 'João',
-        avatar: 'https://image.flaticon.com/icons/png/512/306/306473.png',
-        subtitle: 'Indisponível'
-    },
-    {
-        name: 'Lucas Beto Moura',
-        primeironome: 'Lucas',
-        avatar: 'https://image.flaticon.com/icons/png/512/306/306473.png',
-        subtitle: 'Indisponível'
-    },
-    {
-        name: 'Márcio Fernando Freitas',
-        primeironome: 'Márcio',
-        avatar: 'https://image.flaticon.com/icons/png/512/306/306473.png',
-        subtitle: 'Disponível'
-    },
-    {
-        name: 'Renan Leonardo Ramos da Silva',
-        primeironome: 'Renan',
-        avatar: 'https://image.flaticon.com/icons/png/512/306/306473.png',
-        subtitle: 'Disponível'
-    },
-    {
-        name: 'Thainá Toga Romero',
-        primeironome: 'Thainá',
-        avatar: 'https://image.flaticon.com/icons/png/512/306/306473.png',
-        subtitle: 'Indisponível'
-    },
-    {
-        name: 'Vinicius Andrade Ribeiro',
-        primeironome: 'Vinicius',
-        avatar: 'https://image.flaticon.com/icons/png/512/306/306473.png',
-        subtitle: 'Disponível'
-    }
-]
+import data from '../../banco/bdTecnicos';
+import dadosTecnicos from '../../banco/bdTecnicos'; /* Importação do banco bdTecnicos */
 
 export default function Tecnicos({ navigation: { navigate } }) {
 
@@ -80,7 +19,7 @@ export default function Tecnicos({ navigation: { navigate } }) {
 
                 <View style={styles.container}>
                     {
-                        tecnicos.map((u, i) => {
+                        dadosTecnicos.map((u, i) => {
                             return (
                                 <ListItem
                                     button onPress={() => navigate('Informações - ' + u.primeironome)}
