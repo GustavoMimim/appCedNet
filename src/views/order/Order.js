@@ -1,127 +1,116 @@
-import React from 'react';
-import { SafeAreaView, View, StyleSheet, StatusBar, FlatList, TouchableHighlight } from 'react-native';
+import React, { useState } from 'react';
+import { View, StyleSheet, StatusBar, TouchableOpacity, Modal } from 'react-native';
 import { Text } from 'react-native-elements';
-import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import { SwipeListView } from 'react-native-swipe-list-view';
 import Icon from 'react-native-vector-icons/FontAwesome';
-
-const data = [
-    {
-        id: '0',
-        name: 'Relâmpago McQueen',
-        city: 'Ourinhos',
-        plan: 'Fibra 40mb Res.',
-        reason: 'Problemas de conexão',
-        distance: 'a 7 km de distância'
-    },
-    {
-        id: '1',
-        name: 'Vitória Cunha Cavalcanti',
-        city: 'Ipaussu',
-        plan: 'Fibra Colaboradores 20mb',
-        reason: 'Problemas de conexão',
-        distance: 'a 2 km de distância'
-    },
-    {
-        id: '2',
-        name: 'Davi Fernandes Almeida',
-        city: 'Chavantes',
-        plan: 'Fibra 200mb Comercial',
-        reason: 'Troca de endereço',
-        distance: 'a 7 km de distância'
-    },
-    {
-        id: '3',
-        name: 'Lara Gomes Silva',
-        city: 'Ourinhos',
-        plan: 'Radio 5mb Res.',
-        reason: 'Problemas de conexão',
-        distance: 'a 500 m de distância'
-    },
-    {
-        id: '4',
-        name: 'Yasmin Araujo Pereira',
-        city: 'Ourinhos',
-        plan: 'Fibra 40mb Res.',
-        reason: 'Troca de endereço',
-        distance: 'a 2 km de distância'
-    },
-    {
-        id: '5',
-        name: 'Marisa Ribeiro Rodrigues',
-        city: 'Ourinhos',
-        plan: 'Fibra 40mb Res.',
-        reason: 'Cancelamento de plano',
-        distance: 'a 2 km de distância'
-    },
-    {
-        id: '6',
-        name: 'José Sousa Melo',
-        city: 'Ourinhos',
-        plan: 'Fibra 40mb Res.',
-        reason: 'Problemas de conexão',
-        distance: 'a 3 km de distância'
-    },
-    {
-        id: '7',
-        name: 'Gustavo Rodrigues Cardoso',
-        city: 'Chavantes',
-        plan: 'Fibra Colaboradores 20mb',
-        reason: 'Problemas de conexão',
-        distance: 'a 2 km de distância'
-    },
-    {
-        id: '8',
-        name: 'Arthur Castro Ferreira',
-        city: 'Ourinhos',
-        plan: 'Fibra 40mb Res.',
-        reason: 'Cancelamento de plano',
-        distance: 'a 876 m de distância'
-    },
-    {
-        id: '9 ',
-        name: 'André Dias Souza',
-        city: 'Ourinhos',
-        plan: 'Fibra 200mb Res.',
-        reason: 'Problemas de conexão',
-        distance: 'a 1 km de distância'
-    }
-];
+import data from '../../services/orders';
 
 export default function Order () {
+
+    const [orderSelected, setOrderSelected] = useState(false);
+    const [filter, setFilter] = useState(false);
+
     return (
+
         <View style={styles.container}>
             <StatusBar hidden={false} barStyle="dark-content" backgroundColor="white" translucent />
 
-            <SwipeListView
-                data={data}
-                renderItem={(data, rowMap) => (
-                    <TouchableHighlight
-                    underlayColor={'#004B8D'}
-                    onPress={() => navigate('Informações do Técnico')}
-                    >
-                    <View style={{ flex: 1, margin: 10, alignItems: 'stretch' }}>
-                        <View style={styles.item}>
-                            <Text h5 style={styles.text}>{data.item.plan + ' - ' + data.item.reason}</Text>
-                            <Text h4 style={styles.text}>{data.item.name}</Text>
-                            <View  style={{ flexDirection: 'row' }}>
-                                <Text h5 style={styles.text}>{data.item.city + ' '}</Text>
-                                <Icon name='map-marker' size={16} color='#004B8D' />
-                                <Text h5 style={styles.text}>{' ' + data.item.distance}</Text>
-                            </View>
+
+            <View style={styles.centeredView}>
+
+                <Modal
+                    animationType="slide"
+                    transparent={true}
+                    visible={orderSelected}
+                    onRequestClose={() => {
+                        Alert.alert("Modal has been closed.");
+                    }}
+                >
+                    <View style={styles.centeredView}>
+                        <View style={styles.modalView}>
+                            <Text h4 style={styles.modalText}>Dados do serviço</Text>
+
+                            <TouchableOpacity
+                                style={{ ...styles.openButton, backgroundColor: '#004B8D' }}
+                                onPress={() => {
+                                    setOrderSelected(!orderSelected);
+                                }}
+                            >
+                                <Text style={styles.textStyle}>Fechar</Text>
+                            </TouchableOpacity>
                         </View>
                     </View>
-                    </TouchableHighlight>
-                )}
-                renderHiddenItem={(data, rowMap) => (
-                    <View style={styles.rowBack}>
-                    </View>
-                )}
-                leftOpenValue={75}
-                rightOpenValue={-75}
-            />
+                </Modal>
 
+                <SwipeListView
+                    data={data.filter(a => (a.pending == true))}
+                    renderItem={(data, rowMap) => (
+                        <TouchableOpacity
+                            underlayColor={'#004B8D'}
+                            onPress={() => {
+                                setOrderSelected(true);
+                            }}
+                        >
+                            <View style={styles.item}>
+                                <Text h5 style={styles.text}>{data.item.plan + ' - ' + data.item.reason}</Text>
+                                <Text h4 style={styles.text}>{data.item.name}</Text>
+                                <View>
+                                    <Text h5 style={styles.text}>{data.item.city + ' '}</Text>
+                                    <Icon name='map-marker' size={16} color='#004B8D' />
+                                    <Text h5 style={styles.text}>{' ' + data.item.distance}</Text>
+                                </View>
+                            </View>
+                        </TouchableOpacity >
+                    )}
+                    renderHiddenItem={(data, rowMap) => (
+                        <View style={styles.rowBack}>
+                        </View>
+                    )}
+                    leftOpenValue={75}
+                    rightOpenValue={-75}
+                />
+
+                <Modal
+                    animationType="slide"
+                    transparent={true}
+                    visible={filter}
+                    onRequestClose={() => {
+                        Alert.alert("Modal has been closed.");
+                    }}
+                >
+                    <View style={styles.centeredView}>
+                        <View style={styles.modalView}>
+                            <Text style={styles.modalText}>Filtros!</Text>
+
+                            <TouchableOpacity
+                                style={{ ...styles.openButton, backgroundColor: "#004B8D" }}
+                                onPress={() => {
+                                    setFilter(!filter);
+                                }}
+                            >
+                                <Text style={styles.textStyle}>Fechar</Text>
+                            </TouchableOpacity>
+                        </View>
+                    </View>
+                </Modal>
+
+                <TouchableOpacity
+                    style={styles.floatButton}
+                    onPress={() => {
+                        setFilter(true);
+                    }}
+                >
+
+                    <Icon
+                        name='filter'
+                        size={28}
+                        color='white'
+                    />
+                </TouchableOpacity>
+
+            </View>
         </View>
+
     );
 }
 
@@ -136,9 +125,62 @@ const styles = StyleSheet.create({
         justifyContent: 'space-around',
         alignItems: 'flex-start',
         borderLeftColor: '#004B8D',
-        borderLeftWidth: 5
+        borderLeftWidth: 5,
+        flex: 1,
+        margin: 10,
+        alignItems: 'stretch'
     },
     text: {
         color: "#333333",
-    }
+    },
+    centeredView: {
+        flex: 1,
+        justifyContent: "center",
+        alignItems: "center"
+    },
+    modalView: {
+        margin: 20,
+        backgroundColor: "white",
+        borderRadius: 20,
+        padding: 35,
+        alignItems: "center",
+        shadowColor: "#000",
+        shadowOffset: {
+            width: 0,
+            height: 2
+        },
+        shadowOpacity: 0.25,
+        shadowRadius: 3.84,
+        elevation: 5,
+        borderWidth: 1,
+        borderColor: '#004B8D'
+    },
+    floatButton: {
+        width: 48,
+        height: 48,
+        borderRadius: 30,
+        position: 'absolute',
+        bottom: 10,
+        right: 10,
+        backgroundColor: '#004B8D',
+        alignItems: 'center', justifyContent: 'center'
+    },
+    openButton: {
+        backgroundColor: "#F194FF",
+        borderRadius: 20,
+        padding: 10,
+        elevation: 2
+    },
+    textStyle: {
+        color: "white",
+        fontWeight: "bold",
+        textAlign: "center"
+    },
+    modalText: {
+        marginTop: 0,
+        marginBottom: 15,
+        textAlign: "center",
+        color: '#004B8D'
+    },
+
 })

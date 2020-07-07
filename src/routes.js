@@ -23,7 +23,6 @@ import listaTecnicos from './views/tecnicos/ListaTecnicos.js'; /* Lista de todos
 import Veículos from './views/veiculos/Veiculos.js'; /* Veículos disponíveis e indisponíveis */
 import listaVeiculos from './views/veiculos/ListaVeiculos.js'; /* Lista de todos os veículos */
 import gerenciarVeiculo from './views/veiculos/GerenciarVeiculos.js'; /* Gerenciar Informações do Veículo */
-import selectedOrderView from './views/order/orderSelected.js'
 
 const HomeStack = createStackNavigator();
 
@@ -76,22 +75,9 @@ function HomeStackOrder ({ navigation }) {
           headerTitleStyle: {
             color: '#004B8D'
           },
-          headerRight: () =>
-            <TouchableOpacity
-              style={[{ paddingHorizontal: 30 }]}
-              /* onPress={() => navigation.navigate('Dashboard')} */
-            >
-              <Icon
-                name='filter'
-                size={28}
-                color='#004B8D'
-              />
-            </TouchableOpacity>
 
         }}
       />
-      <HomeStack.Screen name="Serviços" component={orderView} />
-      <HomeStack.Screen name="Serviço" component={selectedOrderView} />
     </HomeStack.Navigator>
   );
 }
