@@ -3,12 +3,12 @@ import { View, StyleSheet, StatusBar, TouchableOpacity, Modal, Picker, Alert } f
 import { Text } from 'react-native-elements';
 import { SwipeListView } from 'react-native-swipe-list-view';
 import Icon from 'react-native-vector-icons/FontAwesome';
-import getOrder from '../../banco/bdOrders';
+import { getOrder, updatePendingOrder } from '../../banco/bdOrders';
 
 export default function Order () {
 
     const [filterView, setFilterView] = useState(false);
-    const [filterPending, setfilterPending] = useState(false);
+    const [filterPending, setfilterPending] = useState('');
     const [filterCity, setfilterCity] = useState('');
     const [filterPlan, setfilterPlan] = useState('');
     const [filterReason, setfilterReason] = useState('');
@@ -19,7 +19,7 @@ export default function Order () {
         var arr = []
         arr = data
         if (arr) {
-            arr = filterPending == '' ? arr : arr.filter(a => (a.pending == filterPending))
+            arr = filterPending === '' ? arr : arr.filter(a => (a.pending == filterPending))
             arr = filterCity == '' ? arr : arr.filter(a => (a.city == filterCity))
             arr = filterPlan == '' ? arr : arr.filter(a => (a.plan == filterPlan))
             arr = filterReason == '' ? arr : arr.filter(a => (a.reason == filterReason))
@@ -32,10 +32,9 @@ export default function Order () {
         <View style={styles.container}>
             <StatusBar hidden={false} barStyle="dark-content" backgroundColor="white" translucent />
 
-            <View style={styles.centeredView}>
+            <View>
                 <SwipeListView
-                    data={filterOrders(data)}
-
+                    data={filterOrders(data)}                    
                     renderItem={(data, rowMap) => (
                         <View style={styles.item}>
                             <Text h5 style={styles.text}>{data.item.plan + ' - ' + data.item.reason}</Text>
@@ -49,10 +48,38 @@ export default function Order () {
                     )}
                     renderHiddenItem={(data, rowMap) => (
                         <View style={styles.rowBack}>
-                            <TouchableOpacity>
-                                <Text>Left</Text>
-                                <Text>Right</Text>
-                            </TouchableOpacity>
+                            <View style={styles.backRightBtnLeft}>
+
+                                <TouchableOpacity
+                                    onPress={() => {
+                                        updatePendingOrder(data.item.id)
+                                        Alert.alert('Serviço alterado com sucesso!')
+                                    }}
+                                >
+
+                                    <Icon
+                                        name='check'
+                                        size={28}
+                                        color='white'
+                                    />
+                                </TouchableOpacity>
+
+                            </View>
+                            <View style={styles.backRightBtnRight}>
+
+                                <TouchableOpacity
+                                    onPress={() => {
+                                        setFilterView(true);
+                                    }}
+                                >
+
+                                    <Icon
+                                        name='remove'
+                                        size={28}
+                                        color='white'
+                                    />
+                                </TouchableOpacity>
+                            </View>
                         </View>
                     )}
                     leftOpenValue={75}
@@ -68,7 +95,7 @@ export default function Order () {
                         Alert.alert("Modal has been closed.");
                     }}
                 >
-                    <View style={styles.centeredView}>
+                    <View>
                         <View style={styles.modalView}>
                             <Text h4 style={styles.modalText}>Filtros!</Text>
 
@@ -160,18 +187,15 @@ const styles = StyleSheet.create({
         justifyContent: 'space-around',
         borderLeftColor: '#004B8D',
         borderLeftWidth: 5,
+        borderRightWidth: 2,
+        borderRightColor: 'red',
         flex: 1,
-        margin: 10,
+        marginVertical: 10,
         alignItems: 'stretch',
         width: '100%'
     },
     text: {
         color: "#333333",
-    },
-    centeredView: {
-        flex: 1,
-        justifyContent: "center",
-        alignItems: 'stretch',
     },
     modalView: {
         margin: 20,
@@ -217,13 +241,6 @@ const styles = StyleSheet.create({
         textAlign: "center",
         color: '#004B8D'
     },
-    rowBack: {
-        alignItems: 'center',
-        flex: 1,
-        flexDirection: 'row',
-        justifyContent: 'space-between',
-        paddingLeft: 15,
-    },
     backRightBtn: {
         alignItems: 'center',
         bottom: 0,
@@ -232,13 +249,26 @@ const styles = StyleSheet.create({
         top: 0,
         width: 75,
     },
+    rowBack: {
+        flex: 1,
+        alignItems: 'center',
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+    },
     backRightBtnLeft: {
-        backgroundColor: 'blue',
-        right: 75,
+        backgroundColor: '#004B8D',
+        alignItems: 'center',
+        justifyContent: 'center',
+        height: 130,
+        width: 75,
+        left: 0,
     },
     backRightBtnRight: {
         backgroundColor: 'red',
+        alignItems: 'center',
+        justifyContent: 'center',
+        height: 130,
+        width: 80,
         right: 0,
     },
-
 })

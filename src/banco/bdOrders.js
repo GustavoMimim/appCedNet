@@ -93,9 +93,11 @@ const data = [
 
 const getOrder = () => data
 
-const changeOrder = (i, name, city, plan, reason, distance, pending) => {
-    data[i].name = name
+const updatePendingOrder = (id) => {
+
+    const found = data.find(element => element.id == id);
+    found.pending = !found.pending
 
 }
 
-export {getOrder}
+export {getOrder, updatePendingOrder}
