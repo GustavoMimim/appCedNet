@@ -3,7 +3,7 @@ import { View, StyleSheet, StatusBar, TouchableOpacity, Modal, Picker, Alert } f
 import { Text } from 'react-native-elements';
 import { SwipeListView } from 'react-native-swipe-list-view';
 import Icon from 'react-native-vector-icons/FontAwesome';
-import { getOrder } from '../../services/orders';
+import getOrder from '../../banco/bdOrders';
 
 export default function Order () {
 

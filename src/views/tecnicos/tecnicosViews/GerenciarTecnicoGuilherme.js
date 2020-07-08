@@ -1,12 +1,17 @@
 import React from 'react';
-import { Text, View, StatusBar, StyleSheet, Alert, Image, ScrollView  } from 'react-native';
-import { Button } from 'react-native-elements';
+import { SafeAreaView, View, StyleSheet, StatusBar, Alert, FlatList, Image, TextInput } from 'react-native';
+import { Text, Card, ListItem, Button, TouchableOpacity } from 'react-native-elements';
+import { ScrollView } from 'react-native-gesture-handler';
+import FontAwesome from 'react-native-vector-icons/FontAwesome';
+import { SwipeListView } from 'react-native-swipe-list-view';
 
-export default function Home () {
-  
-  return (
-    
-    <View style={styles.container}>
+
+
+export default function Tecnicos() {
+
+
+    return (
+        <View style={styles.container}>
 
             <View style={{
                 marginHorizontal: 0,
@@ -31,35 +36,35 @@ export default function Home () {
 
                 <View style={{ flexDirection: 'column', marginTop: 0 }}>
                     <Text style={styles.prefix}>Nome:</Text>
-                    <Text style={styles.content}>Vinicius Andrade Ribeiro</Text>
+                    <Text style={styles.content}>Guilherme Pessoa Cardoso</Text>
                 </View>
                 <View
                     style={styles.linha}
                 />
                 <View style={{ flexDirection: 'column', marginTop: 8 }}>
                     <Text style={styles.prefix}>Cargo:</Text>
-                    <Text style={styles.content}>CEO</Text>
+                    <Text style={styles.content}>Analista de infraestrutura</Text>
                 </View>
                 <View
                     style={styles.linha}
                 />
                 <View style={{ flexDirection: 'column', marginTop: 8 }}>
                     <Text style={styles.prefix}>E-mail:</Text>
-                    <Text style={styles.content}>ceo@cednet.com.br</Text>
+                    <Text style={styles.content}>infraestrutura@cednet.com.br</Text>
                 </View>
                 <View
                     style={styles.linha}
                 />
                 <View style={{ flexDirection: 'column', marginTop: 8 }}>
                     <Text style={styles.prefix}>Telefone: </Text>
-                    <Text style={styles.content}>(14) 3322-7777</Text>
+                    <Text style={styles.content}>(14) 3322-1919</Text>
                 </View>
                 <View
                     style={styles.linha}
                 />
                 <View style={{ flexDirection: 'column', marginTop: 8 }}>
                     <Text style={styles.prefix}>Celular: </Text>
-                    <Text style={styles.content}>(14) 97566-6666</Text>
+                    <Text style={styles.content}>(14) 97566-7646</Text>
                 </View>
                 <View
                     style={styles.linha}
@@ -68,22 +73,9 @@ export default function Home () {
                 <ScrollView>
                     <View style={{ flexDirection: 'row', marginTop: 0 }}>
                         <Text style={{ marginTop: 40, marginBottom: 4, marginLeft: 0, alignSelf: 'flex-start', fontWeight: 'bold', color: '#004B8D', fontSize: 18 }}>Status: </Text>
-                        <Text style={{ marginTop: 40, marginBottom: 4, marginLeft: 180, alignSelf: 'flex-end', fontWeight: 'bold', color: 'green', fontSize: 20 }}>Disponível</Text>
+                        <Text style={{ marginTop: 40, marginBottom: 4, marginLeft: 165, alignSelf: 'flex-end', fontWeight: 'bold', color: '#dd0000', fontSize: 20 }}>Indisponível</Text>
                     </View>
-                    <View style={{ flexDirection: 'column', marginTop: 0 }}>
-                        <Text style={styles.prefix}>Veículo:</Text>
-                        <Text style={styles.content}>TYA-8991</Text>
-                    </View>
-                    <View
-                        style={styles.linha}
-                    />
-                    <View style={{ flexDirection: 'column', marginTop: 0 }}>
-                        <Text style={styles.prefix}>Serviço:</Text>
-                        <Text style={styles.content}>Instalação</Text>
-                    </View>
-                    <View
-                        style={styles.linha}
-                    />
+                    
                     <Button title='Editar perfil'
                         buttonStyle={{ marginTop: 30, width: 150, alignSelf: 'flex-end', backgroundColor: '#004B8D' }} 
                         onPress={() => Alert.alert('Olá')} />

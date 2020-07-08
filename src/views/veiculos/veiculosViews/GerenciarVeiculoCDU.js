@@ -4,12 +4,14 @@ import { Text, Card, ListItem, Button, TouchableOpacity } from 'react-native-ele
 import { ScrollView } from 'react-native-gesture-handler';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import { SwipeListView } from 'react-native-swipe-list-view';
+import { getVeiculoByIndex } from './../../../banco/bdVeiculos'
 
 
 
-export default function Veiculo() {
+export default function Veiculo({ route }) {
 
-
+    const { index } = route.params;
+    const veiculo = getVeiculoByIndex(index);
     return (
         <View style={styles.container}>
 
@@ -34,34 +36,28 @@ export default function Veiculo() {
             }}>
                 <Image style={{ marginBottom: 10 }} />
 
-                <View style={{ flexDirection: 'column', marginTop: 0 }}>
-                    <Text style={styles.prefix}>Placa:</Text>
-                    <Text style={styles.content}>CDU-2532</Text>
+                <Text style={styles.prefix}>Placa:</Text>
+                <View style={styles.container}>
+
+                    <Text style={styles.content}>{veiculo.name}</Text>
+
                 </View>
+                <Image style={{ marginBottom: 20 }} />
                 <View
                     style={styles.linha}
                 />
-                <View style={{ flexDirection: 'column', marginTop: 8 }}>
-                    <Text style={styles.prefix}>Fabricante/Modelo:</Text>
-                    <Text style={styles.content}>Ford Ka</Text>
+
+                <Text style={styles.prefix}>Modelo/Ano:</Text>
+                <View style={styles.container}>
+
+                    <Text style={styles.content}>{veiculo.subtitle}</Text>
+
                 </View>
+                <Image style={{ marginBottom: 20 }} />
                 <View
                     style={styles.linha}
                 />
-                <View style={{ flexDirection: 'column', marginTop: 8 }}>
-                    <Text style={styles.prefix}>Ano:</Text>
-                    <Text style={styles.content}>2020</Text>
-                </View>
-                <View
-                    style={styles.linha}
-                />
-                <View style={{ flexDirection: 'column', marginTop: 8 }}>
-                    <Text style={styles.prefix}>Cor: </Text>
-                    <Text style={styles.content}>Branca</Text>
-                </View>
-                <View
-                    style={styles.linha}
-                />
+                
 
                 <ScrollView>
                     <View style={{ flexDirection: 'row', marginTop: 0 }}>
@@ -76,7 +72,7 @@ export default function Veiculo() {
                         style={styles.linha}
                     />
                     <Button title='Editar informações'
-                        buttonStyle={{ marginTop: 30, width: 160, alignSelf: 'flex-end', backgroundColor: '#004B8D' }} 
+                        buttonStyle={{ marginTop: 30, width: 160, alignSelf: 'flex-end', backgroundColor: '#004B8D' }}
                         onPress={() => Alert.alert('Olá')} />
                 </ScrollView>
 

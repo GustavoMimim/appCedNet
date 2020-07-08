@@ -36,35 +36,35 @@ export default function Tecnicos() {
 
                 <View style={{ flexDirection: 'column', marginTop: 0 }}>
                     <Text style={styles.prefix}>Nome:</Text>
-                    <Text style={styles.content}>Vinicius Andrade Ribeiro</Text>
+                    <Text style={styles.content}>João Armando Gomes</Text>
                 </View>
                 <View
                     style={styles.linha}
                 />
                 <View style={{ flexDirection: 'column', marginTop: 8 }}>
                     <Text style={styles.prefix}>Cargo:</Text>
-                    <Text style={styles.content}>CEO</Text>
+                    <Text style={styles.content}>Trainee</Text>
                 </View>
                 <View
                     style={styles.linha}
                 />
                 <View style={{ flexDirection: 'column', marginTop: 8 }}>
                     <Text style={styles.prefix}>E-mail:</Text>
-                    <Text style={styles.content}>ceo@cednet.com.br</Text>
+                    <Text style={styles.content}>admin@cednet.com.br</Text>
                 </View>
                 <View
                     style={styles.linha}
                 />
                 <View style={{ flexDirection: 'column', marginTop: 8 }}>
                     <Text style={styles.prefix}>Telefone: </Text>
-                    <Text style={styles.content}>(14) 3322-7777</Text>
+                    <Text style={styles.content}>(14) 3322-4564</Text>
                 </View>
                 <View
                     style={styles.linha}
                 />
                 <View style={{ flexDirection: 'column', marginTop: 8 }}>
                     <Text style={styles.prefix}>Celular: </Text>
-                    <Text style={styles.content}>(14) 97566-6666</Text>
+                    <Text style={styles.content}>(14) 97566-7677</Text>
                 </View>
                 <View
                     style={styles.linha}
@@ -73,22 +73,9 @@ export default function Tecnicos() {
                 <ScrollView>
                     <View style={{ flexDirection: 'row', marginTop: 0 }}>
                         <Text style={{ marginTop: 40, marginBottom: 4, marginLeft: 0, alignSelf: 'flex-start', fontWeight: 'bold', color: '#004B8D', fontSize: 18 }}>Status: </Text>
-                        <Text style={{ marginTop: 40, marginBottom: 4, marginLeft: 180, alignSelf: 'flex-end', fontWeight: 'bold', color: 'green', fontSize: 20 }}>Disponível</Text>
+                        <Text style={{ marginTop: 40, marginBottom: 4, marginLeft: 165, alignSelf: 'flex-end', fontWeight: 'bold', color: '#dd0000', fontSize: 20 }}>Indisponível</Text>
                     </View>
-                    <View style={{ flexDirection: 'column', marginTop: 0 }}>
-                        <Text style={styles.prefix}>Veículo:</Text>
-                        <Text style={styles.content}>TYA-8991</Text>
-                    </View>
-                    <View
-                        style={styles.linha}
-                    />
-                    <View style={{ flexDirection: 'column', marginTop: 0 }}>
-                        <Text style={styles.prefix}>Serviço:</Text>
-                        <Text style={styles.content}>Instalação</Text>
-                    </View>
-                    <View
-                        style={styles.linha}
-                    />
+                    
                     <Button title='Editar perfil'
                         buttonStyle={{ marginTop: 30, width: 150, alignSelf: 'flex-end', backgroundColor: '#004B8D' }} 
                         onPress={() => Alert.alert('Olá')} />
