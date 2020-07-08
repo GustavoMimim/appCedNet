@@ -4,7 +4,7 @@ import { Text, Card, ListItem, Button, TouchableOpacity } from 'react-native-ele
 import { ScrollView } from 'react-native-gesture-handler';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import { SwipeListView } from 'react-native-swipe-list-view';
-import dadosVeiculos, { getVeiculoByIndex } from './../../../banco/bdVeiculos'
+import dadosVeiculos, { getVeiculoByIndex } from '../../banco/bdVeiculos'
 
 
 

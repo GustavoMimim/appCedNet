@@ -1,17 +1,63 @@
 import React from 'react';
-import { SafeAreaView, View, StyleSheet, StatusBar, Alert, FlatList, Image, TextInput } from 'react-native';
+import { SafeAreaView, View, StyleSheet, StatusBar, Alert, FlatList, Image, TextInput, RNRestart } from 'react-native';
 import { Text, Card, ListItem, Button, TouchableOpacity } from 'react-native-elements';
 import { ScrollView } from 'react-native-gesture-handler';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import { SwipeListView } from 'react-native-swipe-list-view';
-import {getTecnicoByIndex} from './../../../banco/bdTecnicos'
+import { getTecnicoByIndex } from './../../../banco/bdTecnicos'
+import { array } from 'prop-types';
+import dadosTecnicos from '../../../banco/bdTecnicos';
+import dadosVeiculos from '../../../banco/bdVeiculos';
 
 
 
-export default function Tecnicos({route}) {
+export default function Tecnicos({ route, navigation: { navigate } }) {
+
 
     const { index } = route.params;
     const tecnico = getTecnicoByIndex(index);
+    const [novoNome, onChangeTextNome] = React.useState(tecnico.name);
+    const [novoEmail, onChangeTextEmail] = React.useState(tecnico.email);
+    const [novoTelefone, onChangeTextTelefone] = React.useState(tecnico.telefone);
+    const [novoCelular, onChangeTextCelular] = React.useState(tecnico.celular);
+    function salvarTecnico() {
+        dadosTecnicos[index].name = novoNome;
+        dadosTecnicos[index].email = novoEmail;
+        dadosTecnicos[index].telefone = novoTelefone;
+        dadosTecnicos[index].celular = novoCelular;
+        Alert.alert("Perfil alterado com sucesso.")
+        
+    }
+    function excluirTecnico() {
+        dadosTecnicos[index].excluido=true;
+        Alert.alert("Perfil excluído com sucesso.");
+        navigate('Lista de Técnicos');
+               
+    }
+    const labelStyle = function (options) {
+        if (options == 'Disponível') {
+            return {
+                marginTop: 30,
+                marginBottom: 4,
+                marginLeft: 180,
+                alignSelf: 'flex-end',
+                fontWeight: 'bold',
+                color: 'green',
+                fontSize: 20
+            }
+        } else {
+            return {
+                marginTop: 30,
+                marginBottom: 4,
+                marginLeft: 165,
+                alignSelf: 'flex-end',
+                fontWeight: 'bold',
+                color: 'red',
+                fontSize: 20
+            }
+        }
+
+    }
     return (
 
         <View style={styles.container}>
@@ -35,59 +81,48 @@ export default function Tecnicos({route}) {
                 paddingLeft: 25,
                 borderRadius: 8
             }}>
-                <Image style={{ marginBottom: 10 }} />
+                <Image style={{ marginBottom: 5 }} />
 
                 <Text style={styles.prefix}>Nome:</Text>
-                <View style={styles.container}>
-                    
-                                <Text style={styles.content}>{tecnico.name}</Text>
-                            
-                </View>
-                <Image style={{ marginBottom: 20 }} />
+
+                <TextInput style={styles.content} onChangeText={text => onChangeTextNome(text)} value={novoNome} />
+
                 <View
                     style={styles.linha}
                 />
 
                 <Text style={styles.prefix}>Cargo:</Text>
                 <View style={styles.container}>
-                    
-                                <Text style={styles.content}>{tecnico.cargo}</Text>
-                            
+
+                    <Text style={styles.content}>{tecnico.cargo}</Text>
+
                 </View>
-                <Image style={{ marginBottom: 20 }} />
+                <Image style={{ marginBottom: 24 }} />
                 <View
                     style={styles.linha}
                 />
 
                 <Text style={styles.prefix}>E-mail:</Text>
-                <View style={styles.container}>
-                    
-                                <Text style={styles.content}>{tecnico.email}</Text>
-                            
-                </View>
-                <Image style={{ marginBottom: 20 }} />
+
+                <TextInput style={styles.content} onChangeText={text => onChangeTextEmail(text)} value={novoEmail} />
+
+
                 <View
                     style={styles.linha}
                 />
 
                 <Text style={styles.prefix}>Telefone:</Text>
-                <View style={styles.container}>
-                    
-                                <Text style={styles.content}>{tecnico.telefone}</Text>
-                            
-                </View>
-                <Image style={{ marginBottom: 20 }} />
+
+                <TextInput style={styles.content} onChangeText={text => onChangeTextTelefone(text)} value={novoTelefone} />
+
                 <View
                     style={styles.linha}
                 />
 
                 <Text style={styles.prefix}>Celular:</Text>
-                <View style={styles.container}>
-                    
-                                <Text style={styles.content}>{tecnico.celular}</Text>
-                            
-                </View>
-                <Image style={{ marginBottom: 20 }} />
+
+                <TextInput style={styles.content} onChangeText={text => onChangeTextCelular(text)} value={novoCelular} />
+
                 <View
                     style={styles.linha}
                 />
@@ -96,28 +131,50 @@ export default function Tecnicos({route}) {
 
 
                 <ScrollView>
-                    
+
                     <View style={{ flexDirection: 'row', marginTop: 0 }}>
-                        <Text style={{ marginTop: 40, marginBottom: 4, marginLeft: 0, alignSelf: 'flex-start', fontWeight: 'bold', color: '#004B8D', fontSize: 18 }}>Status: </Text>
-                        <Text style={{ marginTop: 40, marginBottom: 4, marginLeft: 180, alignSelf: 'flex-end', fontWeight: 'bold', color: 'green', fontSize: 20 }}>Disponível</Text>
+                        <Text style={{ marginTop: 30, marginBottom: 4, marginLeft: 0, alignSelf: 'flex-start', fontWeight: 'bold', color: '#004B8D', fontSize: 18 }}>Status: </Text>
+                        <Text style={labelStyle(tecnico.subtitle)} >{tecnico.subtitle}</Text>
                     </View>
                     <View style={{ flexDirection: 'column', marginTop: 0 }}>
                         <Text style={styles.prefix}>Veículo:</Text>
-                        <Text style={styles.content}>TYA-8991</Text>
+                        <Text style={styles.content}>{tecnico.veiculo}</Text>
                     </View>
                     <View
                         style={styles.linha}
                     />
                     <View style={{ flexDirection: 'column', marginTop: 0 }}>
                         <Text style={styles.prefix}>Serviço:</Text>
-                        <Text style={styles.content}>Instalação</Text>
+                        <Text style={styles.content}>{tecnico.servico}</Text>
                     </View>
                     <View
                         style={styles.linha}
                     />
-                    <Button title='Editar perfil'
-                        buttonStyle={{ marginTop: 30, width: 150, alignSelf: 'flex-end', backgroundColor: '#004B8D' }}
-                        onPress={() => Alert.alert('Olá')} />
+                    <View style={{ flexDirection: 'row', marginTop: 0 }}>
+                        <Button title='Excluir perfil'
+                            buttonStyle={{ marginTop: 30, width: 150, alignSelf: 'flex-start', backgroundColor: '#BB0000' }}
+                            onPress={() => Alert.alert(
+                                'ATENÇÃO',
+                                'Deseja realmente excluir o perfil?',
+                                [
+                                    { text: 'Não', onPress: () => console.warn('Não pressionado'), style: 'cancel' },
+                                    { text: 'Sim', onPress: () => excluirTecnico() },
+                                ]
+                            )} />
+                        <Button title='Editar perfil'
+                            buttonStyle={{ marginTop: 30, marginLeft: 35, width: 150, alignSelf: 'flex-end', backgroundColor: 'green' }}
+                            onPress={() => Alert.alert(
+                                'ATENÇÃO',
+                                'Deseja realmente alterar o perfil?',
+                                [
+                                    { text: 'Não', onPress: () => console.warn('Não pressionado'), style: 'cancel' },
+                                    { text: 'Sim', onPress: () => salvarTecnico() },
+                                ]
+                            )} />
+
+
+                    </View>
+
                 </ScrollView>
 
             </View>
@@ -142,7 +199,7 @@ const styles = StyleSheet.create({
         backgroundColor: 'white'
     },
     prefix: {
-        marginTop: 15,
+        marginTop: 8,
         fontSize: 12,
         color: 'gray'
     },

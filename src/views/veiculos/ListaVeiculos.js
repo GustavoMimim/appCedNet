@@ -20,7 +20,7 @@ export default function Veiculos({ navigation: { navigate } }) {
                 <View style={styles.container}>
                     {
                         
-                        dadosVeiculos.map((u, i) => {
+                        dadosVeiculos.filter(a => (a.excluido==false)).map((u, i) => {
                             return (
                                 <ListItem
                                     button onPress={() => navigate('Gerenciar Veículo', { index: u.id })}

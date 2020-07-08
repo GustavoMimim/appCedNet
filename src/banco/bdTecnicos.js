@@ -1,4 +1,4 @@
-const dadosTecnicos = [
+let dadosTecnicos = [
     {
         id: 0,
         name: 'Adriano Pereira Souza',
@@ -10,7 +10,10 @@ const dadosTecnicos = [
         cargo: 'Técnico em redes',
         avatar: 'https://image.flaticon.com/icons/png/512/306/306473.png',
         subtitle: 'Disponível',
-        tarefas: 1
+        veiculo: 'BZQ-0035',
+        servico: 'Manutenção',
+        tarefas: 1,
+        excluido: false
     },
     {
         id: 1,
@@ -23,7 +26,10 @@ const dadosTecnicos = [
         cargo: 'Analista de Infraestrutura',
         avatar: 'https://image.flaticon.com/icons/png/512/306/306473.png',
         subtitle: 'Indisponível',
-        tarefas: 0
+        veiculo: ' ',
+        servico: ' ',
+        tarefas: 0,
+        excluido: false
     },
     {
         id: 2,
@@ -36,7 +42,10 @@ const dadosTecnicos = [
         cargo: 'Técnico em redes',
         avatar: 'https://image.flaticon.com/icons/png/512/306/306473.png',
         subtitle: 'Indisponível',
-        tarefas: 0
+        veiculo: ' ',
+        servico: ' ',
+        tarefas: 0,
+        excluido: false
     },
     {
         id: 3,
@@ -49,7 +58,10 @@ const dadosTecnicos = [
         cargo: 'Analista de Infraestrutura',
         avatar: 'https://image.flaticon.com/icons/png/512/306/306473.png',
         subtitle: 'Disponível',
-        tarefas: 3
+        veiculo: 'NTR-8133',
+        servico: 'Verificação de equipamentos',
+        tarefas: 3,
+        excluido: false
     },
     {
         id: 4,
@@ -62,7 +74,10 @@ const dadosTecnicos = [
         cargo: 'Técnico em manutenção',
         avatar: 'https://image.flaticon.com/icons/png/512/306/306473.png',
         subtitle: 'Indisponível',
-        tarefas: 0
+        veiculo: ' ',
+        servico: ' ',
+        tarefas: 0,
+        excluido: false
     },
     {
         id: 5,
@@ -75,7 +90,10 @@ const dadosTecnicos = [
         cargo: 'Técnico em redes',
         avatar: 'https://image.flaticon.com/icons/png/512/306/306473.png',
         subtitle: 'Indisponível',
-        tarefas: 0
+        veiculo: ' ',
+        servico: ' ',
+        tarefas: 0,
+        excluido: false
     },
     {
         id: 6,
@@ -88,7 +106,10 @@ const dadosTecnicos = [
         cargo: 'Técnico em manutenção',
         avatar: 'https://image.flaticon.com/icons/png/512/306/306473.png',
         subtitle: 'Disponível',
-        tarefas: 1
+        veiculo: 'QMM-2353',
+        servico: 'Manutenção',
+        tarefas: 1,
+        excluido: false
     },
     {
         id: 7,
@@ -101,7 +122,10 @@ const dadosTecnicos = [
         cargo: 'Técnico em manutenção',
         avatar: 'https://image.flaticon.com/icons/png/512/306/306473.png',
         subtitle: 'Disponível',
-        tarefas: 2
+        veiculo: 'JLO-7793',
+        servico: 'Manutenção',
+        tarefas: 2,
+        excluido: false
     },
     {
         id: 8,
@@ -114,7 +138,10 @@ const dadosTecnicos = [
         cargo: 'Analista de Infraestrutura',
         avatar: 'https://image.flaticon.com/icons/png/512/306/306473.png',
         subtitle: 'Indisponível',
-        tarefas: 0
+        veiculo: ' ',
+        servico: ' ',
+        tarefas: 0,
+        excluido: false
     },
     {
         id: 9,
@@ -127,7 +154,10 @@ const dadosTecnicos = [
         cargo: 'Técnico em redes',
         avatar: 'https://image.flaticon.com/icons/png/512/306/306473.png',
         subtitle: 'Disponível',
-        tarefas: 2
+        veiculo: 'BZQ-0035',
+        servico: 'Manutenção',
+        tarefas: 2,
+        excluido: false
     }
 ];
 

@@ -3,7 +3,7 @@ import { View, StatusBar, StyleSheet } from 'react-native';
 import { ScrollView } from 'react-native-gesture-handler';
 import { Text, Card, ListItem } from 'react-native-elements';
 import dadosTecnicos from '../../banco/bdTecnicos'; /* Importação do banco bdTecnicos */
-import dadosVeiculos from '../../banco/bdVeiculos'; /* Importação do banco bdVeiculos */
+import dadosVeiculos , { getVeiculoByIndex } from '../../banco/bdVeiculos'; /* Importação do banco bdVeiculos */
 
 const styles = StyleSheet.create({
   numeros: {
@@ -16,6 +16,7 @@ const styles = StyleSheet.create({
     borderRadius: 5
   },
 });
+
 
 console.disableYellowBox = true
 
@@ -62,10 +63,10 @@ export default function Home({ navigation: { navigate } }) {
             containerStyle={{ borderRadius: 8 }}
           >
             {
-              dadosTecnicos.filter(a => ((a.primeironome == 'Gustavo') || (a.primeironome == 'Renan') || (a.primeironome == 'Vinicius'))).map((u, i) => {
+              dadosTecnicos.filter(a => (((a.primeironome == 'Gustavo') || (a.primeironome == 'Renan') || (a.primeironome == 'Vinicius')) && (a.excluido!=true))).map((u, i) => {
                 return (
                   <ListItem
-                    button onPress={() => navigate('Informações', { index: u.id })}
+                    button onPress={() => navigate('Gerenciar Técnico', { index: u.id })}
                     key={i}
                     roundAvatar
                     title={u.primeironome}
@@ -93,7 +94,7 @@ export default function Home({ navigation: { navigate } }) {
             containerStyle={{ borderRadius: 8 }}
           >
             {
-              dadosVeiculos.filter(a => (a.disponivel == true)).map((u, i) => {
+              dadosVeiculos.filter(a => ((a.disponivel == true) && (a.excluido!=true))).map((u, i) => {
                 return (
                   <ListItem
                     button onPress={() => navigate('Gerenciar Veículo', { index: u.id })}

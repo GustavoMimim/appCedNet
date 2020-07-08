@@ -18,10 +18,10 @@ export default function Tecnicos({ navigation: { navigate } }) {
 
                 <View style={styles.container}>
                     {
-                        dadosTecnicos.map((u, i) => {
+                        dadosTecnicos.filter(a => ((a.excluido!=true))).map((u, i) => {
                             return (
                                 <ListItem
-                                    button onPress={() => navigate('Informações', {index: u.id})}
+                                    button onPress={() => navigate('Gerenciar Técnico', {index: u.id})}
                                     key={i}
                                     roundAvatar
                                     title={u.name}
