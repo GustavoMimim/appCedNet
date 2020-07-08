@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, StatusBar, Alert, StyleSheet } from 'react-native';
+import { View, StatusBar, StyleSheet } from 'react-native';
 import { ScrollView } from 'react-native-gesture-handler';
 import { Text, Card, ListItem } from 'react-native-elements';
 
@@ -54,6 +54,7 @@ const styles = StyleSheet.create({
   },
 });
 
+console.disableYellowBox = true
 
 export default function Home ({ navigation: { navigate } }) {
 
@@ -97,7 +98,7 @@ export default function Home ({ navigation: { navigate } }) {
             title='Técnicos em plantão disponíveis'
             containerStyle={{ borderRadius: 8 }}
           >
-            {
+            {              
               technical.map((u, i) => {
                 return (
                   <ListItem

@@ -78,7 +78,7 @@ const data = [
         plan: 'Fibra 40mb Res.',
         reason: 'Cancelamento de plano',
         distance: 'a 876 m de distância',
-        pending: true
+        pending: false
     },
     {
         id: '9 ',
@@ -91,4 +91,11 @@ const data = [
     }
 ];
 
-export default data;
+const getOrder = () => data
+
+const changeOrder = (i, name, city, plan, reason, distance, pending) => {
+    data[i].name = name
+
+}
+
+export {getOrder}
