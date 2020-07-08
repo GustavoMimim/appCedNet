@@ -18,7 +18,7 @@ const styles = StyleSheet.create({
 });
 
 
-export default function Home ({ navigation: { navigate } }) {
+export default function Home({ navigation: { navigate } }) {
 
   return (
     <View>
@@ -27,7 +27,7 @@ export default function Home ({ navigation: { navigate } }) {
 
       <ScrollView>
 
-        <View style={{ flexDirection: 'row', alignSelf: 'center'}}>
+        <View style={{ flexDirection: 'row', alignSelf: 'center' }}>
           <Card
             title='Ordens de serviço' titleStyle={{ fontSize: 14 }}
             containerStyle={{ width: 166, borderRadius: 5 }}
@@ -61,14 +61,14 @@ export default function Home ({ navigation: { navigate } }) {
             containerStyle={{ borderRadius: 8 }}
           >
             {
-              dadosTecnicos.filter(a => ((a.primeironome == 'Gustavo') || (a.primeironome == 'Renan') || (a.primeironome == 'Vinicius') )).map((u, i) => {
+              dadosTecnicos.filter(a => ((a.primeironome == 'Gustavo') || (a.primeironome == 'Renan') || (a.primeironome == 'Vinicius'))).map((u, i) => {
                 return (
                   <ListItem
-                    button onPress={() => navigate('Informações - ' + u.primeironome)}
+                    button onPress={() => navigate('Informações', { index: u.id })}
                     key={i}
                     roundAvatar
                     title={u.primeironome}
-                    leftAvatar={{ source: { uri: 'https://image.flaticon.com/icons/png/512/306/306473.png' }}} 
+                    leftAvatar={{ source: { uri: 'https://image.flaticon.com/icons/png/512/306/306473.png' } }}
                     containerStyle={{ height: 60 }}
                     bottomDivider
                     chevron={{ color: 'gray' }}
@@ -81,8 +81,8 @@ export default function Home ({ navigation: { navigate } }) {
               <Text style={{ alignSelf: 'flex-start', color: 'white', backgroundColor: '#004B8D', fontSize: 16, paddingHorizontal: 20, paddingVertical: 6, borderRadius: 5 }} onPress={() => navigate('Lista de Técnicos')}>Gerenciar</Text>
               <Text style={{ alignSelf: 'flex-end', color: 'white', backgroundColor: '#004B8D', fontSize: 16, paddingHorizontal: 20, paddingVertical: 6, borderRadius: 5 }} onPress={() => navigate('Técnicos')}>     Mais     </Text>
             </View>
-            
-            
+
+
           </Card>
         </View>
 
@@ -95,7 +95,7 @@ export default function Home ({ navigation: { navigate } }) {
               dadosVeiculos.filter(a => (a.disponivel == true)).map((u, i) => {
                 return (
                   <ListItem
-                    button onPress={() => navigate('Gerenciar Veículo - ' + u.name)}
+                    button onPress={() => navigate('Gerenciar Veículo', { index: u.id })}
                     key={i}
                     roundAvatar
                     title={u.name}

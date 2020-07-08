@@ -4,13 +4,14 @@ import { Text, Card, ListItem, Button, TouchableOpacity } from 'react-native-ele
 import { ScrollView } from 'react-native-gesture-handler';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import { SwipeListView } from 'react-native-swipe-list-view';
-
+import dadosTecnicos from '../../../banco/bdTecnicos'; /* Importação do banco bdTecnicos */
 
 
 export default function Tecnicos() {
 
 
     return (
+
         <View style={styles.container}>
 
             <View style={{
@@ -34,41 +35,86 @@ export default function Tecnicos() {
             }}>
                 <Image style={{ marginBottom: 10 }} />
 
-                <View style={{ flexDirection: 'column', marginTop: 0 }}>
-                    <Text style={styles.prefix}>Nome:</Text>
-                    <Text style={styles.content}>Gustavo Bergamo Mimim</Text>
+                <Text style={styles.prefix}>Nome:</Text>
+                <View style={styles.container}>
+                    {
+                        dadosTecnicos.filter(a => (a.primeironome == 'Gustavo')).map((u, i) => {
+                            return (
+                                <Text style={styles.content}>{u.name}</Text>
+                            );
+                        })
+                    }
                 </View>
+                <Image style={{ marginBottom: 20 }} />
                 <View
                     style={styles.linha}
                 />
-                <View style={{ flexDirection: 'column', marginTop: 8 }}>
-                    <Text style={styles.prefix}>Cargo:</Text>
-                    <Text style={styles.content}>Programador Sênior</Text>
+
+                <Text style={styles.prefix}>Cargo:</Text>
+                <View style={styles.container}>
+                    {
+                        dadosTecnicos.filter(a => (a.primeironome == 'Gustavo')).map((u, i) => {
+                            return (
+                                <Text style={styles.content}>{u.cargo}</Text>
+                            );
+                        })
+                    }
                 </View>
+                <Image style={{ marginBottom: 20 }} />
                 <View
                     style={styles.linha}
                 />
-                <View style={{ flexDirection: 'column', marginTop: 8 }}>
-                    <Text style={styles.prefix}>E-mail:</Text>
-                    <Text style={styles.content}>guguinho@gmail.com</Text>
+
+                <Text style={styles.prefix}>E-mail:</Text>
+                <View style={styles.container}>
+                    {
+                        dadosTecnicos.filter(a => (a.primeironome == 'Gustavo')).map((u, i) => {
+                            return (
+
+                                <Text style={styles.content}>{u.email}</Text>
+                            );
+                        })
+                    }
                 </View>
+                <Image style={{ marginBottom: 20 }} />
                 <View
                     style={styles.linha}
                 />
-                <View style={{ flexDirection: 'column', marginTop: 8 }}>
-                    <Text style={styles.prefix}>Telefone: </Text>
-                    <Text style={styles.content}>(14) 3342-3555</Text>
+
+                <Text style={styles.prefix}>Telefone:</Text>
+                <View style={styles.container}>
+                    {
+                        dadosTecnicos.filter(a => (a.primeironome == 'Gustavo')).map((u, i) => {
+                            return (
+
+                                <Text style={styles.content}>{u.telefone}</Text>
+                            );
+                        })
+                    }
                 </View>
+                <Image style={{ marginBottom: 20 }} />
                 <View
                     style={styles.linha}
                 />
-                <View style={{ flexDirection: 'column', marginTop: 8 }}>
-                    <Text style={styles.prefix}>Celular: </Text>
-                    <Text style={styles.content}>(14) 99812-2665</Text>
+
+                <Text style={styles.prefix}>Celular:</Text>
+                <View style={styles.container}>
+                    {
+                        dadosTecnicos.filter(a => (a.primeironome == 'Gustavo')).map((u, i) => {
+                            return (
+
+                                <Text style={styles.content}>{u.celular}</Text>
+                            );
+                        })
+                    }
                 </View>
+                <Image style={{ marginBottom: 20 }} />
                 <View
                     style={styles.linha}
                 />
+
+
+
 
                 <ScrollView>
                     <View style={{ flexDirection: 'row', marginTop: 0 }}>
@@ -77,20 +123,20 @@ export default function Tecnicos() {
                     </View>
                     <View style={{ flexDirection: 'column', marginTop: 0 }}>
                         <Text style={styles.prefix}>Veículo:</Text>
-                        <Text style={styles.content}>CDU-2532</Text>
+                        <Text style={styles.content}>CDU-2535</Text>
                     </View>
                     <View
                         style={styles.linha}
                     />
                     <View style={{ flexDirection: 'column', marginTop: 0 }}>
                         <Text style={styles.prefix}>Serviço:</Text>
-                        <Text style={styles.content}>Manutenção</Text>
+                        <Text style={styles.content}>Instalação</Text>
                     </View>
                     <View
                         style={styles.linha}
                     />
                     <Button title='Editar perfil'
-                        buttonStyle={{ marginTop: 30, width: 150, alignSelf: 'flex-end', backgroundColor: '#004B8D' }} 
+                        buttonStyle={{ marginTop: 30, width: 150, alignSelf: 'flex-end', backgroundColor: '#004B8D' }}
                         onPress={() => Alert.alert('Olá')} />
                 </ScrollView>
 
@@ -127,7 +173,8 @@ const styles = StyleSheet.create({
     linha: {
         backgroundColor: '#A2A2A2',
         height: 1.4,
-        width: 335
+        width: 335,
+        marginBottom: 10
     },
 
 });

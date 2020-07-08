@@ -1,5 +1,6 @@
 const dadosTecnicos = [
     {
+        id: 0,
         name: 'Adriano Pereira Souza',
         nomeAbreviado: 'Adriano P. Souza',
         primeironome: 'Adriano',
@@ -9,9 +10,10 @@ const dadosTecnicos = [
         cargo: 'Técnico em redes',
         avatar: 'https://image.flaticon.com/icons/png/512/306/306473.png',
         subtitle: 'Disponível',
-        tarefas: 0
+        tarefas: 1
     },
     {
+        id: 1,
         name: 'Aline Oliveira Pereira',
         nomeAbreviado: 'Aline O. Pereira',
         primeironome: 'Aline',
@@ -24,6 +26,7 @@ const dadosTecnicos = [
         tarefas: 0
     },
     {
+        id: 2,
         name: 'Guilherme Pessoa Cardoso',
         nomeAbreviado: 'Guilherme P. Cardoso',
         primeironome: 'Guilherme',
@@ -36,6 +39,7 @@ const dadosTecnicos = [
         tarefas: 0
     },
     {
+        id: 3,
         name: 'Gustavo Bergamo Mimim',
         nomeAbreviado: 'Gustavo B. Mimim',
         primeironome: 'Gustavo',
@@ -48,6 +52,7 @@ const dadosTecnicos = [
         tarefas: 3
     },
     {
+        id: 4,
         name: 'João Armando Gomes',
         nomeAbreviado: 'João A. Gomes',
         primeironome: 'João',
@@ -60,6 +65,7 @@ const dadosTecnicos = [
         tarefas: 0
     },
     {
+        id: 5,
         name: 'Lucas Beto Moura',
         nomeAbreviado: 'Lucas B. Moura',
         primeironome: 'Lucas',
@@ -72,6 +78,7 @@ const dadosTecnicos = [
         tarefas: 0
     },
     {
+        id: 6,
         name: 'Márcio Fernando Freitas',
         nomeAbreviado: 'Márcio F. Freitas',
         primeironome: 'Márcio',
@@ -84,6 +91,7 @@ const dadosTecnicos = [
         tarefas: 1
     },
     {
+        id: 7,
         name: 'Renan Leonardo Ramos da Silva',
         nomeAbreviado: 'Renan L. R. da Silva',
         primeironome: 'Renan',
@@ -96,6 +104,7 @@ const dadosTecnicos = [
         tarefas: 2
     },
     {
+        id: 8,
         name: 'Thainá Toga Romero',
         nomeAbreviado: 'Thainá T. Romero',
         primeironome: 'Thainá',
@@ -108,6 +117,7 @@ const dadosTecnicos = [
         tarefas: 0
     },
     {
+        id: 9,
         name: 'Vinicius Andrade Ribeiro',
         nomeAbreviado: 'Vinicius A. Ribeiro',
         primeironome: 'Vinicius',
@@ -121,4 +131,8 @@ const dadosTecnicos = [
     }
 ];
 
+const getTecnicoByIndex = (i) => dadosTecnicos[i]
+
 export default dadosTecnicos;
+
+export {getTecnicoByIndex}

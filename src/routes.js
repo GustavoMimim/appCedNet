@@ -67,7 +67,7 @@ function HomeStackScreen ({ navigation }) {
       <HomeStack.Screen name="Dashboard" component={dashboardView} />
       <HomeStack.Screen name="Técnicos" component={Tecnicos} /> 
       <HomeStack.Screen name="Informações - Gustavo" component={gerenciarTecnicoGustavo} />
-      <HomeStack.Screen name="Informações - Vinicius" component={gerenciarTecnicoVinicius} />
+      <HomeStack.Screen name="Informações" component={gerenciarTecnicoVinicius} />
       <HomeStack.Screen name="Informações - Renan" component={gerenciarTecnicoRenan} />
       <HomeStack.Screen name="Informações - Adriano" component={gerenciarTecnicoAdriano} />
       <HomeStack.Screen name="Informações - Aline" component={gerenciarTecnicoAline} />
@@ -78,7 +78,7 @@ function HomeStackScreen ({ navigation }) {
       <HomeStack.Screen name="Informações - Thainá" component={gerenciarTecnicoThaina} />
       <HomeStack.Screen name="Lista de Técnicos" component={listaTecnicos} />
       <HomeStack.Screen name="Veículos" component={Veículos} /> 
-      <HomeStack.Screen name="Gerenciar Veículo - CDU-2532" component={gerenciarVeiculoCDU} />
+      <HomeStack.Screen name="Gerenciar Veículo" component={gerenciarVeiculoCDU} />
       <HomeStack.Screen name="Gerenciar Veículo - TYA-8991" component={gerenciarVeiculoTYA} />
       <HomeStack.Screen name="Gerenciar Veículo - MTR-4318" component={gerenciarVeiculoMTR} />
       <HomeStack.Screen name="Gerenciar Veículo - QMM-2353" component={gerenciarVeiculoQMM} />

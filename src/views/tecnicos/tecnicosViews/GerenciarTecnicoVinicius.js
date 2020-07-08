@@ -4,12 +4,14 @@ import { Text, Card, ListItem, Button, TouchableOpacity } from 'react-native-ele
 import { ScrollView } from 'react-native-gesture-handler';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import { SwipeListView } from 'react-native-swipe-list-view';
-import dadosTecnicos from '../../../banco/bdTecnicos'; /* Importação do banco bdTecnicos */
+import {getTecnicoByIndex} from './../../../banco/bdTecnicos'
 
 
-export default function Tecnicos() {
 
+export default function Tecnicos({route}) {
 
+    const { index } = route.params;
+    const tecnico = getTecnicoByIndex(index);
     return (
 
         <View style={styles.container}>
@@ -37,13 +39,9 @@ export default function Tecnicos() {
 
                 <Text style={styles.prefix}>Nome:</Text>
                 <View style={styles.container}>
-                    {
-                        dadosTecnicos.filter(a => (a.primeironome == 'Vinicius')).map((u, i) => {
-                            return (
-                                <Text style={styles.content}>{u.name}</Text>
-                            );
-                        })
-                    }
+                    
+                                <Text style={styles.content}>{tecnico.name}</Text>
+                            
                 </View>
                 <Image style={{ marginBottom: 20 }} />
                 <View
@@ -52,13 +50,9 @@ export default function Tecnicos() {
 
                 <Text style={styles.prefix}>Cargo:</Text>
                 <View style={styles.container}>
-                    {
-                        dadosTecnicos.filter(a => (a.primeironome == 'Vinicius')).map((u, i) => {
-                            return (
-                                <Text style={styles.content}>{u.cargo}</Text>
-                            );
-                        })
-                    }
+                    
+                                <Text style={styles.content}>{tecnico.cargo}</Text>
+                            
                 </View>
                 <Image style={{ marginBottom: 20 }} />
                 <View
@@ -67,14 +61,9 @@ export default function Tecnicos() {
 
                 <Text style={styles.prefix}>E-mail:</Text>
                 <View style={styles.container}>
-                    {
-                        dadosTecnicos.filter(a => (a.primeironome == 'Vinicius')).map((u, i) => {
-                            return (
-
-                                <Text style={styles.content}>{u.email}</Text>
-                            );
-                        })
-                    }
+                    
+                                <Text style={styles.content}>{tecnico.email}</Text>
+                            
                 </View>
                 <Image style={{ marginBottom: 20 }} />
                 <View
@@ -83,14 +72,9 @@ export default function Tecnicos() {
 
                 <Text style={styles.prefix}>Telefone:</Text>
                 <View style={styles.container}>
-                    {
-                        dadosTecnicos.filter(a => (a.primeironome == 'Vinicius')).map((u, i) => {
-                            return (
-
-                                <Text style={styles.content}>{u.telefone}</Text>
-                            );
-                        })
-                    }
+                    
+                                <Text style={styles.content}>{tecnico.telefone}</Text>
+                            
                 </View>
                 <Image style={{ marginBottom: 20 }} />
                 <View
@@ -99,14 +83,9 @@ export default function Tecnicos() {
 
                 <Text style={styles.prefix}>Celular:</Text>
                 <View style={styles.container}>
-                    {
-                        dadosTecnicos.filter(a => (a.primeironome == 'Vinicius')).map((u, i) => {
-                            return (
-
-                                <Text style={styles.content}>{u.celular}</Text>
-                            );
-                        })
-                    }
+                    
+                                <Text style={styles.content}>{tecnico.celular}</Text>
+                            
                 </View>
                 <Image style={{ marginBottom: 20 }} />
                 <View
@@ -117,6 +96,7 @@ export default function Tecnicos() {
 
 
                 <ScrollView>
+                    
                     <View style={{ flexDirection: 'row', marginTop: 0 }}>
                         <Text style={{ marginTop: 40, marginBottom: 4, marginLeft: 0, alignSelf: 'flex-start', fontWeight: 'bold', color: '#004B8D', fontSize: 18 }}>Status: </Text>
                         <Text style={{ marginTop: 40, marginBottom: 4, marginLeft: 180, alignSelf: 'flex-end', fontWeight: 'bold', color: 'green', fontSize: 20 }}>Disponível</Text>

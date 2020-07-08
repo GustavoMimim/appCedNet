@@ -21,7 +21,7 @@ export default function Tecnicos({ navigation: { navigate } }) {
                         dadosTecnicos.map((u, i) => {
                             return (
                                 <ListItem
-                                    button onPress={() => navigate('Informações - ' + u.primeironome)}
+                                    button onPress={() => navigate('Informações', {index: u.id})}
                                     key={i}
                                     roundAvatar
                                     title={u.name}

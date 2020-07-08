@@ -23,7 +23,7 @@ export default function Veiculos({ navigation: { navigate } }) {
                         dadosVeiculos.map((u, i) => {
                             return (
                                 <ListItem
-                                    button onPress={() => navigate('Gerenciar Veículo - ' + u.name)}
+                                    button onPress={() => navigate('Gerenciar Veículo', { index: u.id })}
                                     key={i}
                                     roundAvatar
                                     title={u.name}
