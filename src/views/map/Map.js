@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Text, View, StyleSheet, StatusBar, Dimensions } from 'react-native';
 import MapView, { Marker } from 'react-native-maps';
+import { getOrder } from '../../banco/bdOrders';
 
 import mapStyle from './mapStyle'
 
@@ -13,13 +14,13 @@ const positionTechnical = [
     description: 'Ford Ka - 2020'
   },
   {
-    latitude: -22.9931817, 
+    latitude: -22.9931817,
     longitude: -49.8638002,
     title: 'Vinicius A. Ribeiro',
     description: 'Mobi - 2020'
   },
   {
-    latitude: -22.9998999, 
+    latitude: -22.9998999,
     longitude: -49.8638002,
     title: 'Renan L. R. da Silva',
     description: 'Kwid - 2019'
@@ -28,6 +29,9 @@ const positionTechnical = [
 
 
 export default function Map () {
+
+  const [orders, setOrders] = useState(getOrder());
+
   return (
     <View style={styles.container}>
       <StatusBar hidden={false} barStyle="dark-content" backgroundColor="white" translucent />
@@ -49,7 +53,7 @@ export default function Map () {
           longitudeDelta: 0.0421
         }}
       >
-        
+
         {
           positionTechnical.map((u, i) => {
             return (
@@ -70,6 +74,27 @@ export default function Map () {
           })
         }
 
+        {
+          orders.map((u, i) => {
+            if (u.longitude != null) {
+              return (
+                <Marker
+                  key={i}
+                  coordinate={{
+                    latitude: u.latitude,
+                    longitude: u.longitude,
+                  }}
+                  title={u.name}
+                  description={'Manutenção'}
+                  icon={{
+                    uri: "https://img.icons8.com/plasticine/100/000000/maintenance.png"
+                  }}
+
+                />
+              );
+            }
+          })
+        }
 
       </MapView>
     </View>

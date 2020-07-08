@@ -6,7 +6,9 @@ const data = [
         plan: 'Fibra 40mb Res.',
         reason: 'Problemas de conexão',
         distance: 'a 7 km de distância',
-        pending: true
+        pending: true,
+        latitude: -22.050826,
+        longitude: -49.603366,
     },
     {
         id: '1',
@@ -15,7 +17,9 @@ const data = [
         plan: 'Fibra Colaboradores 20mb',
         reason: 'Problemas de conexão',
         distance: 'a 2 km de distância',
-        pending: true
+        pending: true,
+        latitude: -23.054609,
+        longitude: -49.624625,
     },
     {
         id: '2',
@@ -24,7 +28,9 @@ const data = [
         plan: 'Fibra 200mb Comercial',
         reason: 'Troca de endereço',
         distance: 'a 7 km de distância',
-        pending: true
+        pending: true,
+        latitude: -23.1000000,
+        longitude: -49.5638002,
     },
     {
         id: '3',
@@ -33,7 +39,9 @@ const data = [
         plan: 'Radio 5mb Res.',
         reason: 'Problemas de conexão',
         distance: 'a 500 m de distância',
-        pending: true
+        pending: true,
+        latitude: -23.050826,
+        longitude: -49.603366,
     },
     {
         id: '4',
@@ -42,7 +50,9 @@ const data = [
         plan: 'Fibra 40mb Res.',
         reason: 'Troca de endereço',
         distance: 'a 2 km de distância',
-        pending: true
+        pending: true,
+        latitude: -22.850826,
+        longitude: -49.203366,
     },
     {
         id: '5',
@@ -51,7 +61,9 @@ const data = [
         plan: 'Fibra 40mb Res.',
         reason: 'Cancelamento de plano',
         distance: 'a 2 km de distância',
-        pending: true
+        pending: true,
+        latitude: -23.050826,
+        longitude: -49.603366,
     },
     {
         id: '6',
@@ -69,7 +81,9 @@ const data = [
         plan: 'Fibra Colaboradores 20mb',
         reason: 'Problemas de conexão',
         distance: 'a 2 km de distância',
-        pending: true
+        pending: true,
+        latitude: -23.0000000,
+        longitude: -49.8638002,
     },
     {
         id: '8',
@@ -78,7 +92,9 @@ const data = [
         plan: 'Fibra 40mb Res.',
         reason: 'Cancelamento de plano',
         distance: 'a 876 m de distância',
-        pending: false
+        pending: false,
+        latitude: -22.9931817,
+        longitude: -49.8638002,
     },
     {
         id: '9 ',
@@ -87,7 +103,9 @@ const data = [
         plan: 'Fibra 200mb Res.',
         reason: 'Problemas de conexão',
         distance: 'a 1 km de distância',
-        pending: false
+        pending: false,
+        latitude: -23.060826,
+        longitude: -49.703366,
     }
 ];
 
@@ -100,4 +118,9 @@ const updatePendingOrder = (id) => {
 
 }
 
-export {getOrder, updatePendingOrder}
+const addNewOrder = (newOrder) => {
+    Object.assign(newOrder, { id: data.length + 1 })
+    data.push(newOrder)
+}
+
+export { getOrder, updatePendingOrder, addNewOrder }

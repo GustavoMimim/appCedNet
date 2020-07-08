@@ -1,19 +1,23 @@
 import React, { useState } from 'react';
-import { View, StyleSheet, StatusBar, TouchableOpacity, Modal, Picker, Alert } from 'react-native';
+import { View, StyleSheet, StatusBar, TouchableOpacity, Modal, Picker, Alert, TextInput } from 'react-native';
 import { Text } from 'react-native-elements';
 import { SwipeListView } from 'react-native-swipe-list-view';
 import Icon from 'react-native-vector-icons/FontAwesome';
-import { getOrder, updatePendingOrder } from '../../banco/bdOrders';
+import { getOrder, updatePendingOrder, addNewOrder } from '../../banco/bdOrders';
 
 export default function Order () {
 
+    const [newOrderView, setNewOrderView] = useState(false);
     const [filterView, setFilterView] = useState(false);
     const [filterPending, setfilterPending] = useState('');
     const [filterCity, setfilterCity] = useState('');
     const [filterPlan, setfilterPlan] = useState('');
     const [filterReason, setfilterReason] = useState('');
 
-    const data = getOrder();
+    const [orders, setOrders] = useState(getOrder());
+    const newOrder = {};
+
+
 
     function filterOrders (data) {
         var arr = []
@@ -34,26 +38,27 @@ export default function Order () {
 
             <View>
                 <SwipeListView
-                    data={filterOrders(data)}                    
-                    renderItem={(data, rowMap) => (
+                    data={filterOrders(orders)}
+                    renderItem={(orders, rowMap) => (
                         <View style={styles.item}>
-                            <Text h5 style={styles.text}>{data.item.plan + ' - ' + data.item.reason}</Text>
-                            <Text h4 style={styles.text}>{data.item.name}</Text>
+                            <Text h5 style={styles.text}>{orders.item.plan + ' - ' + orders.item.reason}</Text>
+                            <Text h4 style={styles.text}>{orders.item.name}</Text>
                             <View>
-                                <Text h5 style={styles.text}>{data.item.city + ' '}</Text>
+                                <Text h5 style={styles.text}>{orders.item.city + ' '}</Text>
                                 <Icon name='map-marker' size={16} color='#004B8D' />
-                                <Text h5 style={styles.text}>{' ' + data.item.distance}</Text>
+                                <Text h5 style={styles.text}>{' ' + orders.item.distance}</Text>
                             </View>
                         </View>
                     )}
-                    renderHiddenItem={(data, rowMap) => (
+                    renderHiddenItem={(orders, rowMap) => (
                         <View style={styles.rowBack}>
                             <View style={styles.backRightBtnLeft}>
 
                                 <TouchableOpacity
                                     onPress={() => {
-                                        updatePendingOrder(data.item.id)
+                                        updatePendingOrder(orders.item.id)
                                         Alert.alert('Serviço alterado com sucesso!')
+                                        setOrders(getOrder())
                                     }}
                                 >
 
@@ -86,14 +91,12 @@ export default function Order () {
                     rightOpenValue={-75}
                 />
 
+                { /* ****************************************************************************** */}
                 {/* View de filtros */}
                 <Modal
                     animationType="slide"
                     transparent={true}
                     visible={filterView}
-                    onRequestClose={() => {
-                        Alert.alert("Modal has been closed.");
-                    }}
                 >
                     <View>
                         <View style={styles.modalView}>
@@ -113,7 +116,7 @@ export default function Order () {
                                 selectedValue={filterCity}
                                 onValueChange={(item, itemIndex) => setfilterCity(item)}>
                                 <Picker.Item label='CIDADE...' value='' />
-                                {data.map((item, index) => {
+                                {orders.map((item, index) => {
                                     return (
                                         <Picker.Item label={item.city} value={item.city} key={index} />
                                     )
@@ -125,7 +128,7 @@ export default function Order () {
                                 selectedValue={filterPlan}
                                 onValueChange={(item, itemIndex) => setfilterPlan(item)}>
                                 <Picker.Item label='PLANO...' value='' />
-                                {data.map((item, index) => {
+                                {orders.map((item, index) => {
                                     return (
                                         <Picker.Item label={item.plan} value={item.plan} key={index} />
                                     )
@@ -137,7 +140,7 @@ export default function Order () {
                                 selectedValue={filterReason}
                                 onValueChange={(item, itemIndex) => setfilterReason(item)}>
                                 <Picker.Item label='MOTIVO...' value='' />
-                                {data.map((item, index) => {
+                                {orders.map((item, index) => {
                                     return (
                                         <Picker.Item label={item.reason} value={item.reason} key={index} />
                                     )
@@ -156,27 +159,121 @@ export default function Order () {
                     </View>
                 </Modal>
 
-                <TouchableOpacity
-                    style={styles.floatButton}
-                    onPress={() => {
-                        setFilterView(true);
-                    }}
+                { /* ****************************************************************************** */}
+                {/* View de novo agendamento */}
+                <Modal
+                    animationType="slide"
+                    transparent={true}
+                    visible={newOrderView}
                 >
+                    <View>
+                        <View style={styles.modalView}>
+                            <Text h4 style={styles.modalText}>Novo agendamento!</Text>
 
-                    <Icon
-                        name='filter'
-                        size={28}
-                        color='white'
-                    />
-                </TouchableOpacity>
+                            <TextInput
+                                style={styles.input}
+                                onChangeText={text => Object.assign(newOrder, { name: text })}
+                                placeholder='Cliente'
+                            />
+
+                            <TextInput
+                                style={styles.input}
+                                onChangeText={text => Object.assign(newOrder, { city: text })}
+                                value={newOrder.city}
+                                placeholder='Cidade'
+                            />
+
+                            <TextInput
+                                style={styles.input}
+                                onChangeText={text => Object.assign(newOrder, { plan: text })}
+                                value={newOrder.plan}
+                                placeholder='Plano de acesso'
+                            />
+
+
+                            <TextInput
+                                style={styles.input}
+                                onChangeText={text => Object.assign(newOrder, { reason: text })}
+                                value={newOrder.reason}
+                                placeholder='Motivo do agendamento'
+                            />
+
+
+
+                            <View style={{ flexDirection: 'column', padding: 20 }}>
+
+                                <TouchableOpacity
+                                    style={{ ...styles.openButton, backgroundColor: "#004B8D" }}
+                                    onPress={() => {
+                                        addNewOrder(newOrder);
+                                        setNewOrderView(!newOrderView);
+                                    }}
+                                >
+                                    <Text style={styles.textStyle}>Salvar</Text>
+                                </TouchableOpacity>
+
+                                <TouchableOpacity
+                                    style={{ ...styles.openButton, backgroundColor: "black" }}
+                                    onPress={() => {
+                                        setNewOrderView(!newOrderView);
+                                        newOrder={}
+                                    }}
+                                >
+                                    <Text style={styles.textStyle}>Cancelar</Text>
+                                </TouchableOpacity>
+
+                            </View>
+                        </View>
+                    </View>
+                </Modal>
+
+                { /* ****************************************************************************** */}
+
 
             </View>
-        </View>
+
+            <TouchableOpacity
+                style={styles.floatButtonNew}
+                onPress={() => {
+                    setNewOrderView(true);
+                }}
+            >
+
+                <Icon
+                    name='pencil'
+                    size={28}
+                    color='white'
+                />
+            </TouchableOpacity>
+
+            <TouchableOpacity
+                style={styles.floatButtonFilter}
+                onPress={() => {
+                    setFilterView(true);
+                }}
+            >
+
+                <Icon
+                    name='filter'
+                    size={28}
+                    color='white'
+                />
+            </TouchableOpacity>
+
+        </View >
 
     );
 }
 
 const styles = StyleSheet.create({
+    input: {
+        height: 50,
+        width: 300,
+        borderWidth: 1,
+        borderColor: '#004B8D',
+        marginVertical: 10,
+        padding: 10
+    },
     container: {
         flex: 1,
     },
@@ -201,7 +298,7 @@ const styles = StyleSheet.create({
         margin: 20,
         backgroundColor: "white",
         borderRadius: 20,
-        padding: 35,
+        paddingTop: 20,
         alignItems: "center",
         shadowColor: "#000",
         shadowOffset: {
@@ -214,7 +311,7 @@ const styles = StyleSheet.create({
         borderWidth: 1,
         borderColor: '#004B8D'
     },
-    floatButton: {
+    floatButtonFilter: {
         width: 48,
         height: 48,
         borderRadius: 30,
@@ -224,11 +321,23 @@ const styles = StyleSheet.create({
         backgroundColor: '#004B8D',
         alignItems: 'center', justifyContent: 'center'
     },
+    floatButtonNew: {
+        width: 48,
+        height: 48,
+        borderRadius: 30,
+        position: 'absolute',
+        bottom: 70,
+        right: 10,
+        backgroundColor: '#004B8D',
+        alignItems: 'center', justifyContent: 'center'
+    },
     openButton: {
         backgroundColor: "#F194FF",
         borderRadius: 20,
         padding: 10,
-        elevation: 2
+        elevation: 2,
+        width: 150,
+        marginBottom: 5
     },
     textStyle: {
         color: "white",
