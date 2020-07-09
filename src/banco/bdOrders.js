@@ -1,3 +1,6 @@
+import { Alert } from "react-native";
+import { indexOf } from "lodash";
+
 const data = [
     {
         id: '0',
@@ -31,7 +34,7 @@ const data = [
         pending: true,
         latitude: -23.1000000,
         longitude: -49.5638002,
-    },
+    },    
     {
         id: '3',
         name: 'Lara Gomes Silva',
@@ -119,8 +122,26 @@ const updatePendingOrder = (id) => {
 }
 
 const addNewOrder = (newOrder) => {
-    Object.assign(newOrder, { id: data.length + 1 })
-    data.push(newOrder)
+
+    const array = Object.assign(newOrder, { id: data.length + 1 })
+    data.push(array)
+
 }
 
-export { getOrder, updatePendingOrder, addNewOrder }
+function findWithAttr (array, attr, value) {
+    for (var i = 0; i < array.length; i += 1) {
+        if (array[i][attr] === value) {
+            return i;
+        }
+    }
+    return -1;
+}
+
+const removeOrder = (orderID) => {
+
+    const index = findWithAttr(data, 'id', orderID)
+    data.splice(index, 1);
+
+}
+
+export { getOrder, updatePendingOrder, addNewOrder, removeOrder }

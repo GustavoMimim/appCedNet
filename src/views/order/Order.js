@@ -3,7 +3,7 @@ import { View, StyleSheet, StatusBar, TouchableOpacity, Modal, Picker, Alert, Te
 import { Text } from 'react-native-elements';
 import { SwipeListView } from 'react-native-swipe-list-view';
 import Icon from 'react-native-vector-icons/FontAwesome';
-import { getOrder, updatePendingOrder, addNewOrder } from '../../banco/bdOrders';
+import { getOrder, updatePendingOrder, addNewOrder, removeOrder } from '../../banco/bdOrders';
 
 export default function Order () {
 
@@ -15,9 +15,7 @@ export default function Order () {
     const [filterReason, setfilterReason] = useState('');
 
     const [orders, setOrders] = useState(getOrder());
-    const newOrder = {};
-
-
+    const [newOrder, setNewOrder] = useState({});
 
     function filterOrders (data) {
         var arr = []
@@ -38,6 +36,7 @@ export default function Order () {
 
             <View>
                 <SwipeListView
+                    scrollEnabled={true}
                     data={filterOrders(orders)}
                     renderItem={(orders, rowMap) => (
                         <View style={styles.item}>
@@ -58,7 +57,7 @@ export default function Order () {
                                     onPress={() => {
                                         updatePendingOrder(orders.item.id)
                                         Alert.alert('Serviço alterado com sucesso!')
-                                        setOrders(getOrder())
+                                        setfilterPending(!filterPending)
                                     }}
                                 >
 
@@ -74,7 +73,9 @@ export default function Order () {
 
                                 <TouchableOpacity
                                     onPress={() => {
-                                        setFilterView(true);
+                                        removeOrder(orders.item.id)
+                                        Alert.alert('Serviço removido com sucesso!')
+                                        setOrders(getOrder())
                                     }}
                                 >
 
@@ -98,6 +99,7 @@ export default function Order () {
                     transparent={true}
                     visible={filterView}
                 >
+
                     <View>
                         <View style={styles.modalView}>
                             <Text h4 style={styles.modalText}>Filtros!</Text>
@@ -172,39 +174,51 @@ export default function Order () {
 
                             <TextInput
                                 style={styles.input}
-                                onChangeText={text => Object.assign(newOrder, { name: text })}
+                                onChangeText={text => setNewOrder(Object.assign(newOrder, { name: text }))}
                                 placeholder='Cliente'
                             />
 
                             <TextInput
                                 style={styles.input}
-                                onChangeText={text => Object.assign(newOrder, { city: text })}
+                                onChangeText={text => setNewOrder(Object.assign(newOrder, { city: text }))}
                                 value={newOrder.city}
                                 placeholder='Cidade'
                             />
 
                             <TextInput
                                 style={styles.input}
-                                onChangeText={text => Object.assign(newOrder, { plan: text })}
+                                onChangeText={text => setNewOrder(Object.assign(newOrder, { plan: text }))}
                                 value={newOrder.plan}
                                 placeholder='Plano de acesso'
                             />
 
-
                             <TextInput
                                 style={styles.input}
-                                onChangeText={text => Object.assign(newOrder, { reason: text })}
+                                onChangeText={text => setNewOrder(Object.assign(newOrder, { reason: text }))}
                                 value={newOrder.reason}
                                 placeholder='Motivo do agendamento'
                             />
 
+                            <TextInput
+                                style={styles.input}
+                                onChangeText={text => setNewOrder(Object.assign(newOrder, { latitude: parseFloat(text) }))}
+                                value={newOrder.latitude}
+                                placeholder='Latitude'
+                            />
 
+                            <TextInput
+                                style={styles.input}
+                                onChangeText={text => setNewOrder(Object.assign(newOrder, { longitude: parseFloat(text) }))}
+                                value={newOrder.longitude}
+                                placeholder='Longitude'
+                            />
 
                             <View style={{ flexDirection: 'column', padding: 20 }}>
 
                                 <TouchableOpacity
                                     style={{ ...styles.openButton, backgroundColor: "#004B8D" }}
                                     onPress={() => {
+                                        console.log(newOrder);
                                         addNewOrder(newOrder);
                                         setNewOrderView(!newOrderView);
                                     }}
@@ -216,7 +230,7 @@ export default function Order () {
                                     style={{ ...styles.openButton, backgroundColor: "black" }}
                                     onPress={() => {
                                         setNewOrderView(!newOrderView);
-                                        newOrder={}
+                                        setNewOrder({})
                                     }}
                                 >
                                     <Text style={styles.textStyle}>Cancelar</Text>
@@ -228,7 +242,6 @@ export default function Order () {
                 </Modal>
 
                 { /* ****************************************************************************** */}
-
 
             </View>
 

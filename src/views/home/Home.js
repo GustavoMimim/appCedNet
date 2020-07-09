@@ -3,24 +3,18 @@ import { View, StatusBar, StyleSheet } from 'react-native';
 import { ScrollView } from 'react-native-gesture-handler';
 import { Text, Card, ListItem } from 'react-native-elements';
 import dadosTecnicos from '../../banco/bdTecnicos'; /* Importação do banco bdTecnicos */
-import dadosVeiculos , { getVeiculoByIndex } from '../../banco/bdVeiculos'; /* Importação do banco bdVeiculos */
-
-const styles = StyleSheet.create({
-  numeros: {
-    fontSize: 16,
-    alignSelf: 'center',
-    color: 'white',
-    backgroundColor: '#004B8D',
-    paddingHorizontal: 8,
-    paddingVertical: 4,
-    borderRadius: 5
-  },
-});
-
+import dadosVeiculos from '../../banco/bdVeiculos'; /* Importação do banco bdVeiculos */
+import { getOrder } from '../../banco/bdOrders';
 
 console.disableYellowBox = true
 
-export default function Home({ navigation: { navigate } }) {
+export default function Home ({ navigation: { navigate } }) {
+
+  const [orders, setOrders] = useState(getOrder());
+
+  var count = Object.keys(orders).length;
+
+  console.log(count);
 
   return (
     <View>
@@ -28,31 +22,30 @@ export default function Home({ navigation: { navigate } }) {
       <StatusBar barStyle="dark-content" backgroundColor='white' translucent />
 
       <ScrollView>
-
-        <View style={{ flexDirection: 'row', alignSelf: 'center' }}>
+        <View style={styles.viewCard}>
           <Card
             title='Ordens de serviço' titleStyle={{ fontSize: 14 }}
-            containerStyle={{ width: 166, borderRadius: 5 }}
+            containerStyle={{ width: '40%' }}
           >
-            <Text style={styles.numeros} onPress={() => navigate('Serviços')}>  9  </Text>
+            <Text style={styles.numeros} onPress={() => navigate('Serviços')}>{ count }</Text>
           </Card>
           <Card
             title='Protocolos' titleStyle={{ fontSize: 14 }}
-            containerStyle={{ width: 166, borderRadius: 5 }}
+            containerStyle={{ width: '40%' }}
           >
             <Text style={styles.numeros}> 30 </Text>
           </Card>
         </View>
-        <View style={{ flexDirection: 'row', alignSelf: 'center' }}>
+        <View style={styles.viewCard}>
           <Card
             title='Ordens já atendidas' titleStyle={{ fontSize: 14 }}
-            containerStyle={{ width: 166, borderRadius: 5 }}
+            containerStyle={{ width: '40%' }}
           >
             <Text style={styles.numeros}> 12 </Text>
           </Card>
           <Card
             title='Novos clientes' titleStyle={{ fontSize: 14 }}
-            containerStyle={{ width: 166, borderRadius: 5 }}
+            containerStyle={{ width: '40%' }}
           >
             <Text style={styles.numeros}>  8  </Text>
           </Card>
@@ -63,7 +56,7 @@ export default function Home({ navigation: { navigate } }) {
             containerStyle={{ borderRadius: 8 }}
           >
             {
-              dadosTecnicos.filter(a => (((a.primeironome == 'Gustavo') || (a.primeironome == 'Renan') || (a.primeironome == 'Vinicius')) && (a.excluido!=true))).map((u, i) => {
+              dadosTecnicos.filter(a => (((a.primeironome == 'Gustavo') || (a.primeironome == 'Renan') || (a.primeironome == 'Vinicius')) && (a.excluido != true))).map((u, i) => {
                 return (
                   <ListItem
                     button onPress={() => navigate('Gerenciar Técnico', { index: u.id })}
@@ -74,17 +67,15 @@ export default function Home({ navigation: { navigate } }) {
                     containerStyle={{ height: 60 }}
                     bottomDivider
                     chevron={{ color: 'gray' }}
-                    badge={{ value: u.tarefas, textStyle: { color: 'white' }, containerStyle: { marginTop: 0 } }}
+                    badge={{ value: u.tarefas, textStyle: { color: 'white' }, containerStyle: { marginTop: 0 }, badgeStyle: { backgroundColor: '#004B8D' } }}
                   />
                 );
               })
             }
-            <View style={{ flexDirection: 'row', justifyContent: 'space-around', paddingTop: 20 }}>
-              <Text style={{ alignSelf: 'flex-start', color: 'white', backgroundColor: '#004B8D', fontSize: 16, paddingHorizontal: 20, paddingVertical: 6, borderRadius: 5 }} onPress={() => navigate('Lista de Técnicos')}>Gerenciar</Text>
-              <Text style={{ alignSelf: 'flex-end', color: 'white', backgroundColor: '#004B8D', fontSize: 16, paddingHorizontal: 20, paddingVertical: 6, borderRadius: 5 }} onPress={() => navigate('Técnicos')}>     Mais     </Text>
+            <View style={styles.viewButtons}>
+              <Text style={styles.text} onPress={() => navigate('Lista de Técnicos')}>Gerenciar</Text>
+              <Text style={styles.text} onPress={() => navigate('Técnicos')}>     Mais     </Text>
             </View>
-
-
           </Card>
         </View>
 
@@ -94,7 +85,7 @@ export default function Home({ navigation: { navigate } }) {
             containerStyle={{ borderRadius: 8 }}
           >
             {
-              dadosVeiculos.filter(a => ((a.disponivel == true) && (a.excluido!=true))).map((u, i) => {
+              dadosVeiculos.filter(a => ((a.disponivel == true) && (a.excluido != true))).map((u, i) => {
                 return (
                   <ListItem
                     button onPress={() => navigate('Gerenciar Veículo', { index: u.id })}
@@ -110,16 +101,42 @@ export default function Home({ navigation: { navigate } }) {
                 );
               })
             }
-            <View style={{ flexDirection: 'row', justifyContent: 'space-around', paddingTop: 20 }}>
-              <Text style={{ alignSelf: 'flex-start', color: 'white', backgroundColor: '#004B8D', fontSize: 16, paddingHorizontal: 20, paddingVertical: 6, borderRadius: 5 }} onPress={() => navigate('Lista de Veículos')}>Gerenciar</Text>
-              <Text style={{ alignSelf: 'flex-end', color: 'white', backgroundColor: '#004B8D', fontSize: 16, paddingHorizontal: 20, paddingVertical: 6, borderRadius: 5 }} onPress={() => navigate('Veículos')}>     Mais     </Text>
+            <View style={styles.viewButtons}>
+              <Text style={styles.text} onPress={() => navigate('Lista de Veículos')}>Gerenciar</Text>
+              <Text style={styles.text} onPress={() => navigate('Veículos')}>     Mais     </Text>
             </View>
           </Card>
         </View>
-
       </ScrollView>
     </View>
-
-
   );
 }
+
+const styles = StyleSheet.create({
+  numeros: {
+    fontSize: 16,
+    alignSelf: 'center',
+    color: 'black',
+    paddingHorizontal: 8,
+    paddingVertical: 4,
+    borderRadius: 5
+  },
+  viewCard: {
+    flexDirection: 'row',
+    alignSelf: 'center'
+  },
+  viewButtons: {
+    flexDirection: 'row',
+    justifyContent: 'space-around',
+    paddingTop: 20
+  },
+  text: {
+    alignSelf: 'flex-start',
+    color: 'white',
+    backgroundColor: '#004B8D',
+    fontSize: 16,
+    paddingHorizontal: 20,
+    paddingVertical: 6,
+    borderRadius: 5
+  }
+});

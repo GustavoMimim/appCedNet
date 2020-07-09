@@ -7,23 +7,16 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
 //Screens
-import loginView from './views/login/Login.js'
 import dashboardView from './views/dashboard/Dashboard.js'
-import startView from './views/start/Initial.js'
 import homeView from './views/home/Home.js'
 import mapView from './views/map/Map.js'
-import settingsView from './views/settings/Settings.js'
 import orderView from './views/order/Order.js'
-import aboutView from './views/about/About.js'
-import { isSignedIn } from './services/auth.js'
-import User from './views/teste/User.js';
 import Tecnicos from './views/tecnicos/Tecnicos.js'; /* Técnicos disponíveis e indisponíveis */
 import gerenciarTecnicos from './views/tecnicos/GerenciarTecnicos.js'; /* Gerenciar Informações dos Técnicos */
 import listaTecnicos from './views/tecnicos/ListaTecnicos.js'; /* Lista de todos os técnicos */
 import Veículos from './views/veiculos/Veiculos.js'; /* Veículos disponíveis e indisponíveis */
 import listaVeiculos from './views/veiculos/ListaVeiculos.js'; /* Lista de todos os veículos */
 import gerenciarVeiculos from './views/veiculos/GerenciarVeiculos.js'; /* Gerenciar Informações do Veículo CDU-2532 */
-
 
 const HomeStack = createStackNavigator();
 
@@ -83,25 +76,6 @@ function HomeStackOrder ({ navigation }) {
   );
 }
 
-function HomeStackSettings ({ navigation }) {
-  return (
-    <HomeStack.Navigator>
-      <HomeStack.Screen
-        name="CONFIGURAÇÕES"
-        component={settingsView}
-        options={{
-          title: 'CONFIGURAÇÕES',
-          headerShown: true,
-          headerTitleStyle: {
-            color: '#004B8D'
-          },
-
-        }}
-      />
-    </HomeStack.Navigator>
-  );
-}
-
 const Tab = createBottomTabNavigator();
 
 export default function App () {
@@ -122,8 +96,6 @@ export default function App () {
                 iconName = 'map'
               } else if (route.name === 'Serviços') {
                 iconName = 'list'
-              } else if (route.name === 'Configurações') {
-                iconName = 'sliders'
               }
 
               return <Icon name={iconName} size={24} color={colorHex} />;
@@ -138,7 +110,6 @@ export default function App () {
           <Tab.Screen name="Inicio" component={HomeStackScreen} />
           <Tab.Screen name="Mapa" component={mapView} />
           <Tab.Screen name="Serviços" component={HomeStackOrder} />
-          <Tab.Screen name="Configurações" component={HomeStackSettings} />
         </Tab.Navigator>
       </NavigationContainer >
     );
