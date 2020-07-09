@@ -161,8 +161,15 @@ let dadosTecnicos = [
     }
 ];
 
+const getTecnico = () => dadosTecnicos
+
+const addNewTecnico = (newTecnico) => {
+    Object.assign(newTecnico, { id: dadosTecnicos.length })
+    dadosTecnicos.push(newTecnico)
+}
+
 const getTecnicoByIndex = (i) => dadosTecnicos[i]
 
 export default dadosTecnicos;
 
-export {getTecnicoByIndex}
+export {getTecnicoByIndex, addNewTecnico, getTecnico}

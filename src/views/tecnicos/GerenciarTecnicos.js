@@ -1,17 +1,16 @@
 import React from 'react';
-import { SafeAreaView, View, StyleSheet, StatusBar, Alert, FlatList, Image, TextInput, RNRestart } from 'react-native';
-import { Text, Card, ListItem, Button, TouchableOpacity } from 'react-native-elements';
+import { View, StyleSheet, Alert, Image, TextInput,  } from 'react-native';
+import { Text, Button, TouchableOpacity } from 'react-native-elements';
 import { ScrollView } from 'react-native-gesture-handler';
-import FontAwesome from 'react-native-vector-icons/FontAwesome';
-import { SwipeListView } from 'react-native-swipe-list-view';
+
 import { getTecnicoByIndex } from '../../banco/bdTecnicos'
-import { array } from 'prop-types';
 import dadosTecnicos from '../../banco/bdTecnicos';
-import dadosVeiculos from '../../banco/bdVeiculos';
 
 
 
 export default function Tecnicos({ route, navigation: { navigate } }) {
+
+    
 
 
     const { index } = route.params;
@@ -26,12 +25,12 @@ export default function Tecnicos({ route, navigation: { navigate } }) {
         dadosTecnicos[index].telefone = novoTelefone;
         dadosTecnicos[index].celular = novoCelular;
         Alert.alert("Perfil alterado com sucesso.")
-        
+
     }
     function excluirTecnico() {
-        dadosTecnicos[index].excluido=true;
+        dadosTecnicos[index].excluido = true;
         Alert.alert("Perfil excluído com sucesso.");
-               
+
     }
     const labelStyle = function (options) {
         if (options == 'Disponível') {
@@ -170,14 +169,15 @@ export default function Tecnicos({ route, navigation: { navigate } }) {
                                     { text: 'Sim', onPress: () => salvarTecnico() },
                                 ]
                             )} />
-
-
                     </View>
+
+                    
 
                 </ScrollView>
 
             </View>
-
+            
+            
 
         </View>
 
@@ -211,6 +211,6 @@ const styles = StyleSheet.create({
         height: 1.4,
         width: 335,
         marginBottom: 10
-    },
+    }
 
 });
