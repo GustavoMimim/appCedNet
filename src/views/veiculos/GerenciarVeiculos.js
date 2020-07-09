@@ -14,17 +14,19 @@ export default function Veiculo({ route }) {
     const veiculo = getVeiculoByIndex(index);
     const [novoNome, onChangeTextNome] = React.useState(veiculo.name);
     const [novoCor, onChangeTextCor] = React.useState(veiculo.cor);
-    const [novoModelo, onChangeTextModelo] = React.useState(veiculo.subtitle);
-    function salvarVeiculo(){
-        dadosVeiculos[index].name=novoNome;
-        dadosVeiculos[index].cor=novoCor;
-        dadosVeiculos[index].subtitle=novoModelo;
+    const [novoFabricante, onChangeTextFabricante] = React.useState(veiculo.fabricante);
+    const [novoModelo, onChangeTextModelo] = React.useState(veiculo.modelo);
+    const [novoAno, onChangeTextAno] = React.useState(veiculo.ano);
+    function salvarVeiculo() {
+        dadosVeiculos[index].name = novoNome;
+        dadosVeiculos[index].cor = novoCor;
+        dadosVeiculos[index].subtitle = novoModelo;
         Alert.alert("Dados salvos com sucesso.");
     }
     function excluirVeiculo() {
-        dadosVeiculos[index].excluido=true;
+        dadosVeiculos[index].excluido = true;
         Alert.alert("Veículo excluído com sucesso.");
-               
+
     }
     const labelStyle = function (options) {
         if (options == 'Disponível para uso') {
@@ -57,8 +59,8 @@ export default function Veiculo({ route }) {
                 color: 'red',
                 fontSize: 20
             }
-            
-        } 
+
+        }
 
     }
     return (
@@ -87,15 +89,31 @@ export default function Veiculo({ route }) {
 
                 <Text style={styles.prefix}>Placa:</Text>
 
-                <TextInput style={styles.content} onChangeText={text => onChangeTextNome(text)} value={novoNome}/>
+                <TextInput style={styles.content} onChangeText={text => onChangeTextNome(text)} value={novoNome} />
 
                 <View
                     style={styles.linha}
                 />
 
-                <Text style={styles.prefix}>Modelo/Ano:</Text>
+                <Text style={styles.prefix}>Fabricante:</Text>
 
-                <TextInput style={styles.content} onChangeText={text => onChangeTextModelo(text)} value={novoModelo}/>
+                <TextInput style={styles.content} onChangeText={text => onChangeTextFabricante(text)} value={novoFabricante} />
+
+                <View
+                    style={styles.linha}
+                />
+
+                <Text style={styles.prefix}>Modelo:</Text>
+
+                <TextInput style={styles.content} onChangeText={text => onChangeTextModelo(text)} value={novoModelo} />
+
+                <View
+                    style={styles.linha}
+                />
+
+                <Text style={styles.prefix}>Ano:</Text>
+
+                <TextInput style={styles.content} onChangeText={text => onChangeTextAno(text)} value={novoAno} />
 
                 <View
                     style={styles.linha}
@@ -103,7 +121,7 @@ export default function Veiculo({ route }) {
 
                 <Text style={styles.prefix}>Cor:</Text>
 
-                <TextInput style={styles.content} onChangeText={text => onChangeTextCor(text)} value={novoCor}/>
+                <TextInput style={styles.content} onChangeText={text => onChangeTextCor(text)} value={novoCor} />
 
                 <View
                     style={styles.linha}
@@ -123,7 +141,7 @@ export default function Veiculo({ route }) {
                     <View
                         style={styles.linha}
                     />
-                    
+
                     <View style={{ flexDirection: 'row', marginTop: 0 }}>
                         <Button title='Excluir veículo'
                             buttonStyle={{ marginTop: 30, width: 150, alignSelf: 'flex-start', backgroundColor: '#BB0000' }}

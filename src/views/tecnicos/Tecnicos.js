@@ -7,7 +7,7 @@ import { SwipeListView } from 'react-native-swipe-list-view';
 import dadosTecnicos from '../../banco/bdTecnicos'; /* Importação do banco bdTecnicos */
 
 
-export default function Tecnicos() {
+export default function Tecnicos({ navigation: { navigate } }) {
 
 
   return (
@@ -26,10 +26,17 @@ export default function Tecnicos() {
               dadosTecnicos.filter(a => (a.subtitle == 'Disponível')).map((u, i) => {
                 return (
                   <ListItem
-                    button onPress={() => { Alert.alert(u.primeironome + ' possui ' + u.tarefas + ' tarefa(s)') }}
+                    button onPress={() => Alert.alert(
+                      '',
+                      u.primeironome + ' está disponível.',
+                      [
+                        { text: 'Visualizar informações', onPress: () => navigate('Gerenciar Técnico', { index: u.id }) },
+                        { text: 'OK', onPress: () => console.warn('OK'), style: 'cancel' },
+                      ]
+                    )}
                     key={i}
                     roundAvatar
-                    title={u.name}
+                    title={u.nomeAbreviado}
                     leftAvatar={{ source: { uri: 'https://image.flaticon.com/icons/png/512/306/306473.png' } }}
                     containerStyle={{ height: 60 }}
                     bottomDivider
@@ -46,15 +53,22 @@ export default function Tecnicos() {
             titleStyle={{ color: 'gray' }}
             containerStyle={{ backgroundColor: "#eee" }}
           >
-            
+
             {
               dadosTecnicos.filter(a => (a.subtitle == 'Indisponível')).map((u, i) => {
                 return (
                   <ListItem
-                    button onPress={() => { Alert.alert(u.primeironome + ' está indisponível no momento.') }}
+                  button onPress={() => Alert.alert(
+                    '',
+                    u.primeironome + ' está indisponível no momento.',
+                    [
+                      { text: 'Visualizar informações', onPress: () => navigate('Gerenciar Técnico', { index: u.id }) },
+                      { text: 'OK', onPress: () => console.warn('OK'), style: 'cancel' },
+                    ]
+                  )}
                     key={i}
                     roundAvatar
-                    title={u.name}
+                    title={u.nomeAbreviado}
                     titleStyle={{ color: '#aaa' }}
                     leftAvatar={{ source: { uri: 'https://png.pngtree.com/png-vector/20190501/ourlarge/pngtree-vector-forbidden-icon-png-image_1019667.jpg' } }}
                     containerStyle={{ height: 60 }}

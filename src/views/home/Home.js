@@ -22,6 +22,8 @@ console.disableYellowBox = true
 
 export default function Home({ navigation: { navigate } }) {
 
+  
+
   return (
     <View>
 
@@ -69,7 +71,7 @@ export default function Home({ navigation: { navigate } }) {
                     button onPress={() => navigate('Gerenciar Técnico', { index: u.id })}
                     key={i}
                     roundAvatar
-                    title={u.primeironome}
+                    title={u.nomeAbreviado}
                     leftAvatar={{ source: { uri: 'https://image.flaticon.com/icons/png/512/306/306473.png' } }}
                     containerStyle={{ height: 60 }}
                     bottomDivider
@@ -101,7 +103,7 @@ export default function Home({ navigation: { navigate } }) {
                     key={i}
                     roundAvatar
                     title={u.name}
-                    subtitle={u.subtitle}
+                    subtitle={u.fabricante + ' ' + u.modelo + ' - ' + u.ano}
                     leftAvatar={{ source: { uri: u.avatar } }}
                     containerStyle={{ height: 60 }}
                     bottomDivider
