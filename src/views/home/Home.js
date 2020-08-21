@@ -4,21 +4,12 @@ import { ScrollView } from 'react-native-gesture-handler';
 import { Text, Card, ListItem } from 'react-native-elements';
 import dadosTecnicos from '../../banco/bdTecnicos'; /* Importação do banco bdTecnicos */
 import dadosVeiculos from '../../banco/bdVeiculos'; /* Importação do banco bdVeiculos */
-import { getOrder } from '../../banco/bdOrders';
 
 console.disableYellowBox = true
 
 export default function Home ({ navigation: { navigate } }) {
 
-  const [orders, setOrders] = useState(getOrder());
-
-  var count = Object.keys(orders).length;
-
-  console.log(count);
-
-  
-
-  return (
+    return (
     <View>
 
       <StatusBar barStyle="dark-content" backgroundColor='white' translucent />
@@ -29,7 +20,7 @@ export default function Home ({ navigation: { navigate } }) {
             title='Ordens de serviço' titleStyle={{ fontSize: 14 }}
             containerStyle={{ width: '40%' }}
           >
-            <Text style={styles.numeros} onPress={() => navigate('Serviços')}>{ count }</Text>
+            <Text style={styles.numeros} onPress={() => navigate('Serviços')}> 9 </Text>
           </Card>
           <Card
             title='Protocolos' titleStyle={{ fontSize: 14 }}

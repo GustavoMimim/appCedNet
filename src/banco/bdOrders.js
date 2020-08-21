@@ -4,7 +4,7 @@ import { indexOf } from "lodash";
 const data = [
     {
         id: '0',
-        name: 'Relâmpago McQueen',
+        name: 'Bruno Magalhães',
         city: 'Ourinhos',
         plan: 'Fibra 40mb Res.',
         reason: 'Problemas de conexão',

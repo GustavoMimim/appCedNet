@@ -29,6 +29,10 @@ function HomeStackScreen ({ navigation }) {
         options={{
           title: 'GRUPO CEDNET',
           headerShown: true,
+          headerStyle: {
+            height: 80,
+            justifyContent: 'center'
+          },
           headerTitleStyle: {
             color: '#004B8D'
           },
@@ -43,14 +47,13 @@ function HomeStackScreen ({ navigation }) {
                 color='#004B8D'
               />
             </TouchableOpacity>
-
         }}
       />
       <HomeStack.Screen name="Dashboard" component={dashboardView} />
-      <HomeStack.Screen name="Técnicos" component={Tecnicos} /> 
+      <HomeStack.Screen name="Técnicos" component={Tecnicos} />
       <HomeStack.Screen name="Gerenciar Técnico" component={gerenciarTecnicos} />
       <HomeStack.Screen name="Lista de Técnicos" component={listaTecnicos} />
-      <HomeStack.Screen name="Veículos" component={Veículos} /> 
+      <HomeStack.Screen name="Veículos" component={Veículos} />
       <HomeStack.Screen name="Gerenciar Veículo" component={gerenciarVeiculos} />
       <HomeStack.Screen name="Lista de Veículos" component={listaVeiculos} />
     </HomeStack.Navigator>
@@ -80,37 +83,37 @@ const Tab = createBottomTabNavigator();
 
 export default function App () {
 
-    return (
-      < NavigationContainer >
-        <Tab.Navigator
-          screenOptions={({ route }) => ({
-            tabBarIcon: ({ focused, color, size }) => {
-              let colorHex
-              let iconName
+  return (
+    < NavigationContainer >
+      <Tab.Navigator
+        screenOptions={({ route }) => ({
+          tabBarIcon: ({ focused, color, size }) => {
+            let colorHex
+            let iconName
 
-              colorHex = focused ? '#004B8D' : 'gray'
+            colorHex = focused ? '#004B8D' : 'gray'
 
-              if (route.name === 'Inicio') {
-                iconName = 'home'
-              } else if (route.name === 'Mapa') {
-                iconName = 'map'
-              } else if (route.name === 'Serviços') {
-                iconName = 'list'
-              }
+            if (route.name === 'Inicio') {
+              iconName = 'home'
+            } else if (route.name === 'Mapa') {
+              iconName = 'map'
+            } else if (route.name === 'Serviços') {
+              iconName = 'list'
+            }
 
-              return <Icon name={iconName} size={24} color={colorHex} />;
+            return <Icon name={iconName} size={24} color={colorHex} />;
 
-            },
-          })}
-          tabBarOptions={{
-            activeTintColor: '#004B8D',
-            inactiveTintColor: 'gray',
-          }}
-        >
-          <Tab.Screen name="Inicio" component={HomeStackScreen} />
-          <Tab.Screen name="Mapa" component={mapView} />
-          <Tab.Screen name="Serviços" component={HomeStackOrder} />
-        </Tab.Navigator>
-      </NavigationContainer >
-    );
+          },
+        })}
+        tabBarOptions={{
+          activeTintColor: '#004B8D',
+          inactiveTintColor: 'gray',
+        }}
+      >
+        <Tab.Screen name="Inicio" component={HomeStackScreen} />
+        <Tab.Screen name="Mapa" component={mapView} />
+        <Tab.Screen name="Serviços" component={HomeStackOrder} />
+      </Tab.Navigator>
+    </NavigationContainer >
+  );
 }
